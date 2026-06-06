@@ -215,6 +215,52 @@ View Work
   </div>
 </div>
 
+<div class="chatbot" id="chatbotToggle">
+<i class="fa-solid fa-robot" class="ico"></i>
+</div>
+
+<!-- <div class="chatbot-toggle" id="chatbotToggle">
+  💬
+</div> -->
+
+<div class="chatbot-box" id="chatbotBox">
+  <div class="chatbot-header">
+    <div>
+      <h3>Tanya AI</h3>
+      <span>Portfolio Assistant</span>
+    </div>
+  <button class="chatbot-close" id="chatbotClose">
+    ✕
+  </button>
+  </div>
+  <div class="chatbot-body" id="chatBody">
+    <div class="bot-message">
+      👋 Hi! I'm Tanya AI.<br>
+      Ask me about:
+      <br>• About
+      <br>• Skills
+      <br>• Projects
+      <br>• Contact
+    </div>
+  </div>
+
+  <div class="quick-actions">
+    <button data-question="about">About</button>
+    <button data-question="skills">Skills</button>
+    <button data-question="projects">Projects</button>
+    <button data-question="contact">Contact</button>
+  </div>
+
+  <div class="chatbot-input">
+    <input
+      type="text"
+      id="userInput"
+      placeholder="Ask about Tanya..."
+    />
+    <button id="sendBtn">➤</button>
+  </div>
+</div>
+
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ETZMGQYXCG"></script>
 <script>
@@ -239,17 +285,31 @@ function animCursor() {
 animCursor();
 
 /* ── NAV SCROLL ── */
-const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 60);
-  // highlight active link
+
   const sections = document.querySelectorAll('section[id]');
   let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+
+  sections.forEach(section => {
+    if (window.scrollY >= section.offsetTop - 100) {
+      current = section.id;
+    }
   });
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+
+  // User reached bottom
+  if (
+    window.innerHeight + window.scrollY >=
+    document.documentElement.scrollHeight - 10
+  ) {
+    current = 'contact-section';
+  }
+
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.classList.toggle(
+      'active',
+      link.getAttribute('href') === '#' + current
+    );
   });
 });
 
@@ -336,6 +396,153 @@ document.querySelectorAll('.tp-project-item, .tp-blogstat-item').forEach((el, i)
   el.style.transform = 'translateY(28px)';
   el.style.transition = `opacity .6s ${i * 0.12}s cubic-bezier(0.16,1,0.3,1), transform .6s ${i * 0.12}s cubic-bezier(0.16,1,0.3,1)`;
   io.observe(el);
+});
+
+// chatbot --------
+
+const chatbotBox = document.getElementById("chatbotBox");
+const chatbotToggle = document.getElementById("chatbotToggle");
+const sendBtn = document.getElementById("sendBtn");
+const userInput = document.getElementById("userInput");
+const chatBody = document.getElementById("chatBody");
+
+chatbotToggle.addEventListener("click", () => {
+  chatbotBox.classList.toggle("active");
+});
+
+const replies = {
+  name:
+    "My name is Jennifer, your portfolio assistant. I'm here to provide information about Tanya's skills, projects, and contact details.",
+  about:
+    "👋 Hi! I'm Tanya, a Web Developer who builds modern and responsive websites.",
+
+  skills:
+    "💻 My skills: HTML, CSS, JavaScript, Responsive Design, UI/UX, Git and Python Basics.",
+
+  projects:
+    "🚀 Check out my Projects section to see portfolio websites and client work.",
+
+  contact:
+    "📩 You can contact me through LinkedIn, Email or Instagram.",
+
+  hire:
+    "🤝 Yes! I'm available for freelance website projects.",
+    
+price:
+"💰 Project pricing depends on requirements. Feel free to contact me with your project details for a custom quote.",
+timeline:
+"⏱️ The timeline depends on the project scope, but most websites take between a few days to a few weeks.",
+journey:
+"📚 I'm continuously learning and improving my skills in JavaScript, modern web development, and UI/UX design.",
+services:
+"🎯 I create portfolio websites, landing pages, business websites, responsive layouts, and modern user interfaces.",
+funfact:
+"🌟 Fun Fact: I enjoy learning new technologies and sharing my coding journey online.",
+
+hi:
+"👋 Hello! I'm Jennifer AI, your portfolio assistant. Ask me about Tanya's skills, projects or contact information.",
+
+whoistanya:
+"👋 I'm Tanya, a Web Developer who builds modern and responsive websites.",
+
+made:
+"👩‍💻 I was created by Tanya Mahrauliya to assist visitors with information about her portfolio.",
+  default:
+    "😊 I don't know that yet. Try asking About, Skills, Projects or Contact."
+};
+
+function addMessage(text, type){
+  const div = document.createElement("div");
+  div.className = type;
+  div.innerHTML = text;
+
+  chatBody.appendChild(div);
+
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function botReply(message){
+
+  const text = message.toLowerCase();
+
+  let response = replies.default;
+
+  if(text.includes("about")) response = replies.about;
+  else if(text.includes("skill")) response = replies.skills;
+  else if(text.includes("project")) response = replies.projects;
+  else if(text.includes("contact")) response = replies.contact;
+  else if(text.includes("hire")) response = replies.hire;
+  else if(text.includes("price")) response = replies.pricing;
+  else if(text.includes("timeline")) response = replies.timeline;
+  else if(text.includes("journey")) response = replies.journey;
+  else if(text.includes("services")) response = replies.services;
+  else if(text.includes("funfact")) response = replies.funfact;
+  else if(text.includes("hi") || text.includes("hello")) response = replies.hi;
+  else if(text.includes("who made you") || text.includes("created you")) response = replies.made;
+  else if(text.includes("name")) response = replies.name;
+  else if(text.includes("who is tanya")) response = replies.whoistanya;
+
+  const typing = document.createElement("div");
+
+  typing.className = "typing";
+  typing.innerHTML = "Typing...";
+
+  chatBody.appendChild(typing);
+
+  chatBody.scrollTop = chatBody.scrollHeight;
+
+  setTimeout(() => {
+
+    typing.remove();
+
+    addMessage(response,"bot-message");
+
+  },1000);
+}
+
+function sendMessage(){
+
+  const message = userInput.value.trim();
+
+  if(!message) return;
+
+  addMessage(message,"user-message");
+
+  botReply(message);
+
+  userInput.value = "";
+}
+
+sendBtn.addEventListener("click", sendMessage);
+
+userInput.addEventListener("keypress", e => {
+
+  if(e.key === "Enter"){
+    sendMessage();
+  }
+
+});
+
+document.querySelectorAll(".quick-actions button")
+.forEach(btn => {
+
+  btn.addEventListener("click", () => {
+
+    const question = btn.dataset.question;
+
+    addMessage(question,"user-message");
+
+    botReply(question);
+
+  });
+
+});
+
+
+const chatbotClose = document.getElementById("chatbotClose");
+
+chatbotClose.addEventListener("click", () => {
+  chatbotBox.classList.remove("active");
 });
 </script>
 </body>
