@@ -11,13 +11,14 @@
   --gold:     #C9A84C;
   --gold2:    #E8C97A;
   --white:    #F5F2EC;
-  --muted:    rgba(245,242,236,0.45);
+  --muted:    rgba(245, 242, 236, 0.74);
   --accent:   #C9A84C;
   --r:        16px;
   --ease:     cubic-bezier(0.16,1,0.3,1);
 }
 
-html { scroll-behavior: smooth; }
+
+
 
 body {
   font-family: 'Syne', sans-serif;
@@ -176,9 +177,22 @@ nav {
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 .arch-container img {
-  width: 100%; display: block;
+  width: 75%; display: block;
+  margin-bottom: 170px;
   filter: drop-shadow(0 30px 60px rgba(0,0,0,.6));
+  filter:contrast(120%);
+  /* margin-left: -90px; */
+  /* border-radius:100vh; */
+  /* border: 2px solid rgba(201,168,76,.3); */
 }
+.arch-container::after{
+  content: '';
+  position: absolute; inset: 0;
+  top: -20px; left: -20px;
+  background: radial-gradient(ellipse at 30% 30%, rgba(255, 0, 0, 0.08) 0%, transparent 60%);
+}
+
+
 
 /* hero content */
 .content {
@@ -197,17 +211,45 @@ nav {
 
 .content h1 {
   font-family: 'Cormorant', serif;
-  font-size: clamp(3.8rem, 7vw, 6.5rem);
+  font-size: clamp(3.1rem, 5vw, 6.2rem);
   font-weight: 300; line-height: .95;
   letter-spacing: -.01em; color: var(--white);
   margin-bottom: 28px;
   animation: fadeUp .8s .2s var(--ease) both;
 }
-.content h1 span { color: var(--gold); font-style: italic; }
+/* .content h1 span { 
+  color: var(--gold); 
+  font-style: italic;
+} */
+.content h1 p{
+   color: var(--gold); 
+  font-style: italic;
+  width: 2200%;
+  height: 100%;
+}
+.tags {
+  display: flex; gap: 16px; margin-bottom: 32px;
+  animation: fadeUp .8s .25s var(--ease) both;
+}
+.tags p {
+  padding: 6px 16px; border: 1px solid var(--border);
+  border-radius: 50px;
+   border: 1px solid rgba(201,168,76,.2);
+   color: var(--muted); 
+   font-size: .75rem;
+  display: flex; align-items: center; gap: 6px;}
+.tags p i { color: var(--gold); }
+
+.tags p:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-2px);
+  transition: all .3s var(--ease);
+}
 
 .description {
   font-size: .9rem; line-height: 1.8; color: var(--muted);
-  max-width: 420px; margin-bottom: 44px;
+  max-width: 920px; margin-bottom: 44px;
   animation: fadeUp .8s .3s var(--ease) both;
 }
 
@@ -215,6 +257,7 @@ nav {
   display: flex; gap: 16px; align-items: center;
   animation: fadeUp .8s .4s var(--ease) both;
 }
+
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(30px); }
@@ -267,7 +310,9 @@ nav {
   background: transparent; color: var(--white);
   border: 1px solid rgba(255,255,255,.2);
 }
-.btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); 
+scale: 1.1;
+}
 
 /* TP-HIRE (alias same as btn-gold) */
 .tp-contact-btn2, .tp-contact-btn, .tp-hire-btn {
@@ -282,7 +327,109 @@ nav {
 .tp-contact-btn2:hover, .tp-contact-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 40px rgba(201,168,76,.35);
+  scale: 1.1;
 }
+
+
+.open-work-badge {
+    position: absolute;
+    bottom: -25px;
+    left: 950px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 320px;
+    padding: 20px;
+
+    border-radius: 20px;
+
+    background: rgba(20, 20, 20, 0.55);
+
+    backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(212, 175, 55, 0.15);
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,0.3);
+
+    color: white;
+}
+
+.badge-title{
+    color:#bdbdbd;
+    font-size:1rem;
+}
+
+.badge-content h3{
+    margin:8px 0;
+    font-size:1rem;
+    color:#fff;
+}
+
+.status{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#cfcfcf;
+    font-size:14px;
+}
+
+.dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:#d4af37;
+
+    box-shadow:
+    0 0 10px #d4af37,
+    0 0 20px #d4af37;
+}
+
+.download-btn{
+    width:45px;
+    height:45px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid #d4af37;
+
+    color:#d4af37;
+    font-size:22px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+    text-decoration: underline;
+}
+
+.download-btn:hover{
+    background:#d4af37;
+    color:black;
+}
+
+
+@keyframes pulse {
+    0%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.9);
+    }
+    100%{
+        transform:scale(1);
+    }
+}
+
+.dot{
+    animation:pulse 2s infinite;
+}
+
 
 /* ═══════════════════════════════════════
    INTRO / ABOUT
@@ -1025,5 +1172,41 @@ footer span { font-size: .75rem; color: rgba(255,255,255,.25); }
   .tp-hire-row { grid-template-columns: 1fr; }
   footer { padding: 24px; flex-direction: column; text-align: center; }
   #cursor, #cursor-ring { display: none; }
+
+  .open-work-badge{
+  left: 20px;
+  bottom: 620px;
+  width: 220px;
+  padding: 10px;
+}
+
+.badge-title{
+  font-size: .7rem;
+}
+.badge-content h3{
+  font-size: .8rem;
+}
+.status{
+  font-size: .7rem;
+}
+
+.download-btn{
+    width:35px;
+    height:35px;
+    font-size:20px;
+  }
+.tags p{
+  font-size: .55rem;
+}
+
+.tp-contact-btn2, .tp-contact-btn, .tp-hire-btn {
+   padding: 10px 12px; 
+   font-size: .65rem;
+}
+
+.arch-container img {
+  width: 120%;
+}
+
 }
 
