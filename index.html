@@ -1544,120 +1544,32 @@
         }
 
         /* ─── RESPONSIVE ─── */
+
+        /* ── Tablet (≤1024px) ── */
         @media (max-width: 1024px) {
             section {
-                padding: 100px 6% 80px 6%;
+                padding: 100px 5% 70px 5%;
             }
 
             header,
             header.scrolled {
-                padding: 20px 6%;
-            }
-
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 50px;
-                text-align: center;
-            }
-
-            .hero-left h1 {
-                text-align: center;
-            }
-
-            .hero-desc {
-                margin: 0 auto 35px auto;
-            }
-
-            .badge-container,
-            .hero-buttons,
-            .hero-socials {
-                justify-content: center;
-            }
-
-            .interest-chips {
-                justify-content: center;
+                padding: 18px 5%;
             }
 
             .about-grid,
             .contact-grid {
                 grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .footer-links-wrap {
                 gap: 50px;
             }
 
-            .portrait-container {
-                width: 320px;
-                height: 320px;
-            }
-
             footer {
-                padding: 60px 6% 30px 6%;
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                display: none;
+                padding: 60px 5% 30px 5%;
             }
 
-            .footer-links-wrap {
-                gap: 40px;
-            }
-
-            .hero-image img {
-                width: 60%;
-                height: 60%;
-                margin-left: -200px;
-                object-fit: cover;
-            }
-
-            .skills-cap-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .explore-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .tp-hire-sec {
-                width: 100%;
-                max-width: 100%;
-                padding: 32px 24px;
-                border-radius: 20px;
-            }
-
-            .tp-hire-title {
-                font-size: 2rem;
-                line-height: 1.1;
-            }
-
-            .tp-hire-row {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .portrait-container {
-                width: 260px;
-                height: 260px;
-            }
-
-            .footer-links-wrap {
-                flex-direction: column;
-                gap: 30px;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .hero-buttons a {
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 992px) {
             .tp-hire-sec {
                 width: 90%;
                 max-width: 500px;
@@ -1669,13 +1581,458 @@
             }
         }
 
-        @media (max-width: 360px) {
+        /* ── Mobile nav hamburger toggle ── */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            background: transparent;
+            border: none;
+            padding: 6px;
+            z-index: 1100;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: all 0.35s var(--ease);
+            transform-origin: center;
+        }
+
+        .mobile-menu-toggle.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .mobile-menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .mobile-menu-toggle.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* Mobile nav drawer */
+        .mobile-nav-drawer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(5, 5, 5, 0.97);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 36px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s var(--ease);
+        }
+
+        .mobile-nav-drawer.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mobile-nav-drawer a {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--muted);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            transition: color 0.3s var(--ease);
+        }
+
+        .mobile-nav-drawer a:hover,
+        .mobile-nav-drawer a.active {
+            color: var(--white);
+        }
+
+        /* ── Mobile (≤768px) ── */
+        @media (max-width: 768px) {
+
+            /* Hide desktop nav, show hamburger */
+            nav {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .mobile-nav-drawer {
+                display: flex;
+            }
+
+            /* Hide the Let's Talk button in header on mobile */
+            header .btn-premium {
+                display: none;
+            }
+
+            /* ── Section padding ── */
+            section {
+                padding: 90px 5% 60px 5%;
+            }
+
+            /* ── Hero ── */
+            #home {
+                min-height: 100svh;
+                padding-top: 100px;
+                align-items: flex-start;
+            }
+
+            /* Single-column hero, full width */
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+                text-align: center;
+            }
+
+            /* Hide profile image entirely on mobile */
+            .hero-right {
+                display: none !important;
+            }
+
+            .hero-left h1 {
+                font-size: clamp(2.4rem, 10vw, 3.4rem);
+                letter-spacing: -1.5px;
+                text-align: center;
+                margin-bottom: 18px;
+            }
+
+            .creative-tag {
+                font-size: 0.7rem;
+                letter-spacing: 1.5px;
+                margin-bottom: 18px;
+            }
+
+            .typer-container {
+                min-height: 38px;
+                margin-bottom: 20px;
+            }
+
+            .hero-tagline {
+                font-size: clamp(1.1rem, 4.5vw, 1.5rem);
+            }
+
+            .hero-desc {
+                font-size: 0.95rem;
+                line-height: 1.75;
+                max-width: 100%;
+                margin: 0 auto 28px auto;
+            }
+
+            .badge-container {
+                justify-content: center;
+                gap: 8px;
+                margin-bottom: 28px;
+            }
+
+            .badge {
+                font-size: 0.8rem;
+                padding: 6px 14px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 14px;
+                width: 100%;
+                margin-bottom: 36px;
+            }
+
+            .hero-buttons a {
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero-socials {
+                justify-content: center;
+                gap: 22px;
+            }
+
+            /* ── Section headings ── */
+            .section-title-wrap {
+                margin-bottom: 44px;
+            }
+
+            .section-title {
+                font-size: clamp(1.8rem, 7vw, 2.4rem);
+                letter-spacing: -1px;
+            }
+
+            .section-subtitle {
+                font-size: 0.72rem;
+                letter-spacing: 2px;
+            }
+
+            /* ── About ── */
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .about-story h3 {
+                font-size: 1.25rem;
+            }
+
+            .about-story p {
+                font-size: 0.95rem;
+            }
+
+            .interest-chips {
+                justify-content: center;
+                gap: 8px;
+                margin-top: 22px;
+            }
+
+            .interest-chip {
+                font-size: 0.78rem;
+                padding: 6px 14px;
+            }
+
+            .timeline {
+                padding-left: 22px;
+            }
+
+            .time-title {
+                font-size: 1rem;
+            }
+
+            .time-desc {
+                font-size: 0.85rem;
+            }
+
+            /* ── Skills ── */
+            .skills-cap-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .skill-cap-card {
+                padding: 26px 22px;
+            }
+
+            .skill-cap-icon {
+                width: 44px;
+                height: 44px;
+                font-size: 1.2rem;
+                margin-bottom: 16px;
+            }
+
+            .skill-cap-title {
+                font-size: 0.8rem;
+            }
+
+            .skill-cap-desc {
+                font-size: 0.87rem;
+            }
+
+            /* ── Projects ── */
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .project-info {
+                padding: 22px 18px;
+            }
+
+            .project-title {
+                font-size: 1.25rem;
+                margin-bottom: 8px;
+            }
+
+            .project-desc {
+                font-size: 0.9rem;
+            }
+
+            /* ── Current Focus ── */
+            #focus {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            .focus-statement {
+                font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+                line-height: 1.5;
+                margin-bottom: 32px;
+            }
+
+            .focus-tags {
+                gap: 10px;
+            }
+
+            .focus-tag {
+                font-size: 0.8rem;
+                padding: 7px 16px;
+            }
+
+            .focus-status {
+                font-size: 0.72rem;
+                padding: 7px 16px;
+                margin-bottom: 28px;
+            }
+
+            /* ── Connect / Digital Presence ── */
+            .connect-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .connect-card {
+                padding: 22px 18px;
+            }
+
+            .connect-count {
+                font-size: 1.6rem;
+            }
+
+            /* ── Contact ── */
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .contact-info-block p {
+                font-size: 1rem;
+            }
+
+            /* ── Footer ── */
+            footer {
+                padding: 50px 5% 28px 5%;
+            }
+
+            .footer-top {
+                flex-direction: column;
+                gap: 36px;
+                margin-bottom: 40px;
+            }
+
+            .footer-brand h3 {
+                font-size: 1.6rem;
+            }
+
+            .footer-brand p {
+                font-size: 0.88rem;
+                max-width: 100%;
+            }
+
+            .footer-links-wrap {
+                gap: 32px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            /* ── Hire modal ── */
             .tp-hire-sec {
-                padding: 22px 16px;
+                width: calc(100% - 32px);
+                max-width: 100%;
+                padding: 32px 22px;
+                border-radius: 18px;
+                margin: 16px;
             }
 
             .tp-hire-title {
+                font-size: 1.9rem;
+                line-height: 1.15;
+            }
+
+            .tp-hire-row {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            /* ── Disable custom cursor on touch devices ── */
+            #custom-cursor,
+            #cursor-follower {
+                display: none;
+            }
+
+            * {
+                cursor: auto !important;
+            }
+        }
+
+        /* ── Small mobile (≤480px) ── */
+        @media (max-width: 480px) {
+            section {
+                padding: 80px 4% 50px 4%;
+            }
+
+            header,
+            header.scrolled {
+                padding: 15px 4%;
+            }
+
+            .hero-left h1 {
+                font-size: clamp(2rem, 11vw, 2.8rem);
+                letter-spacing: -1px;
+            }
+
+            .hero-tagline {
+                font-size: clamp(1rem, 4vw, 1.3rem);
+            }
+
+            .hero-desc {
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: clamp(1.6rem, 8vw, 2rem);
+            }
+
+            .skill-cap-card {
+                padding: 22px 18px;
+            }
+
+            .focus-statement {
+                font-size: clamp(1.1rem, 4vw, 1.4rem);
+            }
+
+            .footer-links-wrap {
+                flex-direction: column;
+                gap: 28px;
+            }
+
+            .tp-hire-title {
+                font-size: 1.6rem;
+            }
+
+            .tp-hire-sec {
+                padding: 24px 16px;
+            }
+        }
+
+        /* ── Extra small (≤360px) ── */
+        @media (max-width: 360px) {
+            .hero-left h1 {
+                font-size: 1.9rem;
+            }
+
+            .section-title {
                 font-size: 1.5rem;
+            }
+
+            .tp-hire-sec {
+                padding: 20px 14px;
+            }
+
+            .tp-hire-title {
+                font-size: 1.4rem;
             }
         }
     </style>
@@ -1711,7 +2068,23 @@
             <a href="#contact">Contact</a>
         </nav>
         <a href="#contact" class="btn-premium btn-font">Let's Talk</a>
+        <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <nav class="mobile-nav-drawer" id="mobile-drawer">
+        <a href="#home" class="active" data-drawer-link>Home</a>
+        <a href="#about" data-drawer-link>About</a>
+        <a href="#skills" data-drawer-link>Skills</a>
+        <a href="#projects" data-drawer-link>Projects</a>
+        <a href="#connect" data-drawer-link>Connect</a>
+        <a href="#contact" data-drawer-link>Contact</a>
+        <a href="#contact" class="btn-premium btn-font" data-drawer-link style="margin-top: 8px; font-size: 1rem;">Let's Talk</a>
+    </nav>
 
     <!-- ─── HERO ─── -->
     <section id="home">
@@ -2479,6 +2852,37 @@
             if (e.target === document.getElementById('overlay')) closeHire();
         }
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeHire(); });
+
+        /* ── Mobile Hamburger Menu ── */
+        (function () {
+            const toggle = document.getElementById('mobile-toggle');
+            const drawer = document.getElementById('mobile-drawer');
+            if (!toggle || !drawer) return;
+
+            function openDrawer() {
+                toggle.classList.add('open');
+                drawer.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeDrawer() {
+                toggle.classList.remove('open');
+                drawer.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            toggle.addEventListener('click', () => {
+                drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+            });
+
+            // Close when any drawer link is clicked
+            drawer.querySelectorAll('[data-drawer-link]').forEach(link => {
+                link.addEventListener('click', closeDrawer);
+            });
+
+            // Close on Escape
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+        })();
     </script>
 
 </body>
