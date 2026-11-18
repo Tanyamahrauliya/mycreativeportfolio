@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tanya Mahrauliya | Web Developer & AI Builder</title>
+    <title>Tanya Mahrauliya | AI Automation Specialist & Web Developer</title>
     <meta name="description"
-        content="Personal portfolio of Tanya Mahrauliya — web developer, AI automation builder and SaaS explorer. See what I'm building, learning and experimenting with.">
+        content="Portfolio of Tanya Mahrauliya — AI Automation Specialist & Web Developer. Building practical AI automations with n8n, AI agents, API integrations, and modern business websites.">
 
     <!-- Google Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,8 +58,8 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             opacity: 0.02;
             pointer-events: none;
             z-index: 9999;
@@ -106,7 +106,7 @@
         }
 
         section {
-            padding: 140px 10% 100px 10%;
+            padding: 120px 10% 90px 10%;
             position: relative;
             z-index: 2;
         }
@@ -120,10 +120,10 @@
         }
 
         .glass-card:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-3px);
+            border-color: rgba(129, 140, 248, 0.28);
+            transform: translateY(-4px);
             background: var(--card);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55), 0 0 25px rgba(129, 140, 248, 0.05);
         }
 
         /* Custom Cursor */
@@ -179,7 +179,7 @@
             pointer-events: none;
         }
 
-        /* Loader */
+        /* ─── Minimal Premium Loader ─── */
         #loader {
             position: fixed;
             top: 0;
@@ -189,48 +189,71 @@
             background: var(--bg);
             z-index: 10001;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            transition: opacity 0.8s var(--ease);
+            justify-content: center;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.7s ease;
+            pointer-events: auto;
         }
 
-        .loader-logo {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 5rem;
-            color: var(--white);
-            margin-bottom: 20px;
+        #loader.loader-hidden {
             opacity: 0;
-            transform: scale(0.8);
-            animation: reveal 1s var(--ease) forwards 0.2s;
+            visibility: hidden;
+            pointer-events: none;
         }
 
-        .loader-bar {
-            width: 150px;
-            height: 2px;
-            background: var(--border);
-            position: relative;
-            overflow: hidden;
-            border-radius: 2px;
+        .loader-name {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 0.38em;
+            padding-left: 0.38em;
+            user-select: none;
         }
 
-        .loader-progress {
-            width: 0%;
-            height: 100%;
-            background: var(--gold);
-            animation: load 1.5s var(--ease) forwards;
+        .loader-letter {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(2.4rem, 6vw, 4.2rem);
+            font-weight: 700;
+            display: inline-block;
+            color: var(--white);
+            background: linear-gradient(135deg, #ffffff 25%, var(--gold) 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            transform: translateY(18px) scale(0.92);
+            filter: blur(6px);
+            animation: letterReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: calc(var(--char-i, 0) * 0.12s + 0.12s);
         }
 
-        @keyframes reveal {
-            to {
+        @keyframes letterReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(18px) scale(0.92);
+                filter: blur(6px);
+            }
+            60% {
                 opacity: 1;
-                transform: scale(1);
+                filter: blur(0px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0px);
             }
         }
 
-        @keyframes load {
-            to {
-                width: 100%;
+        @media (prefers-reduced-motion: reduce) {
+            .loader-letter {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+                filter: none !important;
+            }
+            #loader {
+                transition: opacity 0.2s ease !important;
             }
         }
 
@@ -390,7 +413,7 @@
 
         .hero-left h1 {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: clamp(3rem, 5.5vw, 6rem);
+            font-size: clamp(2.35rem, 4.2vw, 4.2rem);
             line-height: 1.0;
             margin-bottom: 25px;
             font-weight: 800;
@@ -413,7 +436,7 @@
 
         .hero-tagline {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+            font-size: clamp(1.15rem, 1.8vw, 1.65rem);
             font-weight: 600;
             background: linear-gradient(90deg, var(--white), var(--muted));
             background-clip: text;
@@ -423,7 +446,7 @@
         .hero-desc {
             color: var(--muted);
             max-width: 560px;
-            font-size: 1.1rem;
+            font-size: 0.98rem;
             line-height: 1.8;
             margin-bottom: 40px;
         }
@@ -566,23 +589,23 @@
 
         /* ─── SECTION COMMON ─── */
         .section-title-wrap {
-            margin-bottom: 80px;
+            margin-bottom: 60px;
         }
 
         .section-subtitle {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.78rem;
+            font-size: 0.72rem;
             color: var(--gold);
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2.5px;
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-weight: 600;
         }
 
         .section-title {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: clamp(2.2rem, 4vw, 4rem);
+            font-size: clamp(1.75rem, 3.2vw, 2.75rem);
             font-weight: 800;
             letter-spacing: -1.5px;
         }
@@ -596,8 +619,8 @@
 
         .about-story h3 {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1.6rem;
-            margin-bottom: 20px;
+            font-size: 1.3rem;
+            margin-bottom: 16px;
             font-weight: 700;
             color: var(--white);
             letter-spacing: -0.5px;
@@ -605,9 +628,9 @@
 
         .about-story p {
             color: var(--muted);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
+            font-size: 0.94rem;
+            line-height: 1.75;
+            margin-bottom: 16px;
         }
 
         .interest-chips {
@@ -677,18 +700,72 @@
 
         .time-title {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
+            font-size: 0.98rem;
+            margin-bottom: 4px;
             font-weight: 700;
         }
 
         .time-desc {
             color: var(--muted);
-            font-size: 0.9rem;
-            line-height: 1.65;
+            font-size: 0.84rem;
+            line-height: 1.6;
         }
 
         /* (Exploring section removed) */
+
+
+        /* ─── ABOUT HIGHLIGHT CARDS ─── */
+        .about-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .about-highlight-card {
+            padding: 20px 22px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            border-radius: var(--r);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            transition: all 0.3s var(--ease);
+        }
+
+        .about-highlight-card:hover {
+            border-color: rgba(129, 140, 248, 0.28);
+            transform: translateY(-2px);
+            background: var(--card);
+        }
+
+        .highlight-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(129, 140, 248, 0.08);
+            border: 1px solid rgba(129, 140, 248, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.15rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .about-highlight-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 5px;
+        }
+
+        .about-highlight-card p {
+            font-size: 0.84rem;
+            color: var(--muted);
+            line-height: 1.55;
+            margin: 0;
+        }
 
         /* ─── SKILLS SECTION ─── */
         .skills-cap-grid {
@@ -698,7 +775,7 @@
         }
 
         .skill-cap-card {
-            padding: 36px 30px;
+            padding: 30px 24px;
             display: flex;
             flex-direction: column;
             position: relative;
@@ -750,7 +827,7 @@
 
         .skill-cap-title {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             margin-bottom: 12px;
@@ -759,16 +836,16 @@
         }
 
         .skill-cap-desc {
-            font-size: 0.9rem;
+            font-size: 0.84rem;
             color: var(--muted);
-            line-height: 1.65;
+            line-height: 1.6;
             flex-grow: 1;
         }
 
         /* ─── PROJECTS SECTION ─── */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
             gap: 30px;
         }
 
@@ -848,16 +925,16 @@
         }
 
         .project-title {
-            font-size: 1.6rem;
-            margin-bottom: 12px;
-            font-weight: 500;
+            font-size: 1.28rem;
+            margin-bottom: 10px;
+            font-weight: 600;
         }
 
         .project-desc {
             color: var(--muted);
-            font-size: 1rem;
-            line-height: 1.7;
-            margin-bottom: 24px;
+            font-size: 0.88rem;
+            line-height: 1.65;
+            margin-bottom: 20px;
         }
 
         .project-tags {
@@ -869,11 +946,11 @@
 
         .project-tag {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.75rem;
-            background: rgba(0, 242, 254, 0.05);
-            border: 1px solid rgba(0, 242, 254, 0.12);
+            font-size: 0.72rem;
+            background: rgba(129, 140, 248, 0.08);
+            border: 1px solid rgba(129, 140, 248, 0.2);
             color: var(--gold);
-            padding: 4px 12px;
+            padding: 4px 11px;
             border-radius: 20px;
         }
 
@@ -958,7 +1035,7 @@
 
         .focus-statement {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            font-size: clamp(1.4rem, 2.4vw, 2.1rem);
             line-height: 1.4;
             color: var(--white);
             margin-bottom: 50px;
@@ -1081,15 +1158,15 @@
         }
 
         .connect-title {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            font-weight: 400;
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+            font-weight: 600;
         }
 
         .connect-desc {
             color: var(--muted);
-            font-size: 0.9rem;
-            line-height: 1.6;
+            font-size: 0.84rem;
+            line-height: 1.55;
             margin-bottom: 22px;
             flex-grow: 1;
         }
@@ -1208,14 +1285,14 @@
         }
 
         .footer-brand h3 {
-            font-size: 2.2rem;
+            font-size: 1.75rem;
             margin-bottom: 12px;
         }
 
         .footer-brand p {
             color: var(--muted);
             max-width: 300px;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             line-height: 1.6;
         }
 
@@ -1244,7 +1321,7 @@
         .footer-col a {
             color: var(--muted);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             transition: color 0.3s var(--ease);
         }
 
@@ -1379,7 +1456,7 @@
 
         .connect-count {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 2rem;
+            font-size: 1.85rem;
             font-weight: 800;
             color: var(--white);
             line-height: 1;
@@ -1543,59 +1620,99 @@
             }
         }
 
-        /* ─── RESPONSIVE ─── */
+        /* ─── COMPREHENSIVE RESPONSIVE DESIGN SYSTEM ─── */
 
-        /* ── Tablet (≤1024px) ── */
+        /* ── Base Touch & Mobile Friendly Utilities ── */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ── Large Tablet & Small Laptop (≤1024px) ── */
         @media (max-width: 1024px) {
             section {
-                padding: 100px 5% 70px 5%;
+                padding: 90px 6% 65px 6%;
             }
 
             header,
             header.scrolled {
-                padding: 18px 5%;
+                padding: 16px 6%;
+            }
+
+            nav {
+                gap: 20px;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1.1fr 0.9fr;
+                gap: 40px;
             }
 
             .about-grid,
             .contact-grid {
                 grid-template-columns: 1fr;
-                gap: 48px;
+                gap: 44px;
+            }
+
+            .skills-cap-grid {
+                grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+                gap: 20px;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+                gap: 24px;
             }
 
             .footer-links-wrap {
-                gap: 50px;
+                gap: 40px;
             }
 
             footer {
-                padding: 60px 5% 30px 5%;
+                padding: 60px 6% 30px 6%;
             }
 
             .tp-hire-sec {
                 width: 90%;
-                max-width: 500px;
-                padding: 42px 32px;
+                max-width: 520px;
+                padding: 38px 28px;
             }
 
             .tp-hire-title {
-                font-size: 2.4rem;
+                font-size: 2.2rem;
             }
         }
 
-        /* ── Mobile nav hamburger toggle ── */
+        /* ── Mobile Nav Hamburger Toggle ── */
         .mobile-menu-toggle {
             display: none;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
             gap: 5px;
-            background: transparent;
-            border: none;
-            padding: 6px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            width: 42px;
+            height: 42px;
+            padding: 8px;
             z-index: 1100;
+            cursor: pointer;
+            transition: all 0.25s var(--ease);
+        }
+
+        .mobile-menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--gold);
         }
 
         .mobile-menu-toggle span {
             display: block;
-            width: 24px;
+            width: 22px;
             height: 2px;
             background: var(--white);
             border-radius: 2px;
@@ -1616,7 +1733,7 @@
             transform: translateY(-7px) rotate(-45deg);
         }
 
-        /* Mobile nav drawer */
+        /* ── Mobile Nav Drawer ── */
         .mobile-nav-drawer {
             display: none;
             position: fixed;
@@ -1624,14 +1741,16 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background: rgba(5, 5, 5, 0.97);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            height: 100dvh;
+            background: rgba(5, 5, 8, 0.98);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             z-index: 999;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 36px;
+            gap: 28px;
+            padding: 40px 20px;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.35s var(--ease);
@@ -1644,23 +1763,23 @@
 
         .mobile-nav-drawer a {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1.8rem;
+            font-size: clamp(1.4rem, 5vw, 1.9rem);
             font-weight: 700;
             color: var(--muted);
             text-decoration: none;
             letter-spacing: -0.5px;
-            transition: color 0.3s var(--ease);
+            padding: 8px 16px;
+            transition: color 0.3s var(--ease), transform 0.3s var(--ease);
         }
 
         .mobile-nav-drawer a:hover,
         .mobile-nav-drawer a.active {
             color: var(--white);
+            transform: scale(1.05);
         }
 
-        /* ── Mobile (≤768px) ── */
-        @media (max-width: 768px) {
-
-            /* Hide desktop nav, show hamburger */
+        /* ── Tablet Breakpoint for Navigation (≤880px) ── */
+        @media (max-width: 880px) {
             nav {
                 display: none;
             }
@@ -1673,130 +1792,148 @@
                 display: flex;
             }
 
-            /* Hide the Let's Talk button in header on mobile */
             header .btn-premium {
                 display: none;
             }
 
-            /* ── Section padding ── */
-            section {
-                padding: 90px 5% 60px 5%;
-            }
-
-            /* ── Hero ── */
-            #home {
-                min-height: 100svh;
-                padding-top: 100px;
-                align-items: flex-start;
-            }
-
-            /* Single-column hero, full width */
             .hero-grid {
                 grid-template-columns: 1fr;
-                gap: 0;
+                gap: 24px;
                 text-align: center;
             }
 
-            /* Hide profile image entirely on mobile */
             .hero-right {
                 display: none !important;
             }
 
             .hero-left h1 {
-                font-size: clamp(2.4rem, 10vw, 3.4rem);
-                letter-spacing: -1.5px;
-                text-align: center;
-                margin-bottom: 18px;
-            }
-
-            .creative-tag {
-                font-size: 0.7rem;
-                letter-spacing: 1.5px;
-                margin-bottom: 18px;
-            }
-
-            .typer-container {
-                min-height: 38px;
-                margin-bottom: 20px;
-            }
-
-            .hero-tagline {
-                font-size: clamp(1.1rem, 4.5vw, 1.5rem);
+                font-size: clamp(2.3rem, 7vw, 3.4rem);
+                margin: 0 auto 18px auto;
             }
 
             .hero-desc {
-                font-size: 0.95rem;
-                line-height: 1.75;
-                max-width: 100%;
                 margin: 0 auto 28px auto;
             }
 
             .badge-container {
                 justify-content: center;
+            }
+
+            .hero-socials {
+                justify-content: center;
+            }
+        }
+
+        /* ── Standard Mobile (≤768px) ── */
+        @media (max-width: 768px) {
+            section {
+                padding: 85px 5% 55px 5%;
+            }
+
+            #home {
+                min-height: auto;
+                padding-top: 110px;
+                padding-bottom: 60px;
+                align-items: center;
+            }
+
+            .hero-left h1 {
+                font-size: clamp(2.1rem, 8vw, 3rem);
+                letter-spacing: -1px;
+                line-height: 1.1;
+                margin-bottom: 16px;
+            }
+
+            .creative-tag {
+                font-size: 0.68rem;
+                letter-spacing: 1.5px;
+                padding: 5px 14px;
+                margin-bottom: 16px;
+            }
+
+            .typer-container {
+                min-height: 36px;
+                margin-bottom: 18px;
+            }
+
+            .hero-tagline {
+                font-size: clamp(1.05rem, 4vw, 1.4rem);
+            }
+
+            .hero-desc {
+                font-size: 0.92rem;
+                line-height: 1.7;
+                margin: 0 auto 24px auto;
+            }
+
+            .badge-container {
                 gap: 8px;
                 margin-bottom: 28px;
             }
 
             .badge {
-                font-size: 0.8rem;
+                font-size: 0.78rem;
                 padding: 6px 14px;
             }
 
             .hero-buttons {
                 flex-direction: column;
-                align-items: center;
-                gap: 14px;
+                align-items: stretch;
+                gap: 12px;
                 width: 100%;
-                margin-bottom: 36px;
+                max-width: 360px;
+                margin: 0 auto 32px auto;
             }
 
             .hero-buttons a {
                 width: 100%;
                 text-align: center;
-            }
-
-            .hero-socials {
                 justify-content: center;
-                gap: 22px;
+                padding: 13px 22px;
             }
 
-            /* ── Section headings ── */
+            /* Section Headings */
             .section-title-wrap {
-                margin-bottom: 44px;
+                margin-bottom: 38px;
             }
 
             .section-title {
-                font-size: clamp(1.8rem, 7vw, 2.4rem);
-                letter-spacing: -1px;
+                font-size: clamp(1.7rem, 6.5vw, 2.3rem);
+                letter-spacing: -0.8px;
             }
 
             .section-subtitle {
-                font-size: 0.72rem;
+                font-size: 0.7rem;
                 letter-spacing: 2px;
             }
 
-            /* ── About ── */
+            /* About */
             .about-grid {
                 grid-template-columns: 1fr;
-                gap: 36px;
+                gap: 32px;
             }
 
             .about-story h3 {
-                font-size: 1.25rem;
+                font-size: 1.2rem;
             }
 
             .about-story p {
-                font-size: 0.95rem;
+                font-size: 0.92rem;
+            }
+
+            .about-highlight-card {
+                padding: 18px 16px;
+                gap: 14px;
             }
 
             .interest-chips {
                 justify-content: center;
                 gap: 8px;
-                margin-top: 22px;
+                margin-top: 20px;
             }
 
             .interest-chip {
-                font-size: 0.78rem;
+                font-size: 0.76rem;
                 padding: 6px 14px;
             }
 
@@ -1804,43 +1941,28 @@
                 padding-left: 22px;
             }
 
-            .time-title {
-                font-size: 1rem;
+            .timeline-item::before {
+                left: -28px;
             }
 
-            .time-desc {
-                font-size: 0.85rem;
-            }
-
-            /* ── Skills ── */
+            /* Skills / Capabilities */
             .skills-cap-grid {
                 grid-template-columns: 1fr;
                 gap: 16px;
             }
 
             .skill-cap-card {
-                padding: 26px 22px;
+                padding: 24px 20px;
             }
 
-            .skill-cap-icon {
-                width: 44px;
-                height: 44px;
-                font-size: 1.2rem;
-                margin-bottom: 16px;
-            }
-
-            .skill-cap-title {
-                font-size: 0.8rem;
-            }
-
-            .skill-cap-desc {
-                font-size: 0.87rem;
-            }
-
-            /* ── Projects ── */
+            /* Projects */
             .projects-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 22px;
+            }
+
+            .project-img-frame {
+                aspect-ratio: 16/10;
             }
 
             .project-info {
@@ -1848,118 +1970,129 @@
             }
 
             .project-title {
-                font-size: 1.25rem;
-                margin-bottom: 8px;
+                font-size: 1.2rem;
             }
 
             .project-desc {
-                font-size: 0.9rem;
+                font-size: 0.88rem;
             }
 
-            /* ── Current Focus ── */
+            .project-links {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .proj-link,
+            .proj-video-btn {
+                padding: 8px 16px;
+                font-size: 0.82rem;
+                min-height: 40px;
+            }
+
+            /* Current Focus */
             #focus {
                 padding-left: 5%;
                 padding-right: 5%;
             }
 
             .focus-statement {
-                font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+                font-size: clamp(1.15rem, 4vw, 1.55rem);
                 line-height: 1.5;
-                margin-bottom: 32px;
-            }
-
-            .focus-tags {
-                gap: 10px;
-            }
-
-            .focus-tag {
-                font-size: 0.8rem;
-                padding: 7px 16px;
-            }
-
-            .focus-status {
-                font-size: 0.72rem;
-                padding: 7px 16px;
                 margin-bottom: 28px;
             }
 
-            /* ── Connect / Digital Presence ── */
+            .focus-tags {
+                gap: 8px;
+            }
+
+            .focus-tag {
+                font-size: 0.78rem;
+                padding: 7px 15px;
+            }
+
+            /* Connect */
             .connect-grid {
                 grid-template-columns: 1fr;
-                gap: 16px;
+                gap: 14px;
             }
 
             .connect-card {
                 padding: 22px 18px;
             }
 
-            .connect-count {
-                font-size: 1.6rem;
-            }
-
-            /* ── Contact ── */
+            /* Contact */
             .contact-grid {
                 grid-template-columns: 1fr;
-                gap: 36px;
+                gap: 32px;
             }
 
             .contact-info-block p {
-                font-size: 1rem;
+                font-size: 1.05rem;
             }
 
-            /* ── Footer ── */
+            /* Input auto-zoom prevention on iOS mobile */
+            .form-control {
+                font-size: 16px;
+                padding: 12px 0;
+            }
+
+            .contact-form button[type="submit"] {
+                width: 100%;
+                padding: 14px 24px;
+                font-size: 0.95rem;
+                justify-content: center;
+            }
+
+            /* Footer */
             footer {
-                padding: 50px 5% 28px 5%;
+                padding: 48px 5% 24px 5%;
             }
 
             .footer-top {
                 flex-direction: column;
-                gap: 36px;
-                margin-bottom: 40px;
-            }
-
-            .footer-brand h3 {
-                font-size: 1.6rem;
+                gap: 32px;
+                margin-bottom: 36px;
             }
 
             .footer-brand p {
-                font-size: 0.88rem;
                 max-width: 100%;
             }
 
             .footer-links-wrap {
-                gap: 32px;
+                gap: 28px;
             }
 
             .footer-bottom {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 16px;
+                gap: 14px;
             }
 
-            /* ── Hire modal ── */
+            /* Hire Modal */
             .tp-hire-sec {
-                width: calc(100% - 32px);
+                width: calc(100% - 24px);
                 max-width: 100%;
-                padding: 32px 22px;
+                padding: 28px 18px;
                 border-radius: 18px;
-                margin: 16px;
+                margin: 12px;
             }
 
             .tp-hire-title {
-                font-size: 1.9rem;
+                font-size: 1.75rem;
                 line-height: 1.15;
             }
 
             .tp-hire-row {
                 grid-template-columns: 1fr;
-                gap: 14px;
+                gap: 12px;
             }
 
-            /* ── Disable custom cursor on touch devices ── */
+            /* Disable Custom Cursor on Touch */
             #custom-cursor,
-            #cursor-follower {
-                display: none;
+            #cursor-follower,
+            #mouse-spotlight {
+                display: none !important;
             }
 
             * {
@@ -1967,72 +2100,1147 @@
             }
         }
 
-        /* ── Small mobile (≤480px) ── */
+        /* ── Compact Mobile (≤480px) ── */
         @media (max-width: 480px) {
             section {
-                padding: 80px 4% 50px 4%;
+                padding: 75px 4.5% 45px 4.5%;
             }
 
             header,
             header.scrolled {
-                padding: 15px 4%;
+                padding: 14px 4.5%;
+            }
+
+            .logo {
+                font-size: 1.35rem;
             }
 
             .hero-left h1 {
-                font-size: clamp(2rem, 11vw, 2.8rem);
-                letter-spacing: -1px;
+                font-size: clamp(1.85rem, 9vw, 2.45rem);
+                letter-spacing: -0.8px;
             }
 
             .hero-tagline {
-                font-size: clamp(1rem, 4vw, 1.3rem);
+                font-size: clamp(0.95rem, 3.8vw, 1.2rem);
             }
 
             .hero-desc {
-                font-size: 0.9rem;
+                font-size: 0.88rem;
+                line-height: 1.65;
+            }
+
+            .badge {
+                font-size: 0.74rem;
+                padding: 5px 12px;
             }
 
             .section-title {
-                font-size: clamp(1.6rem, 8vw, 2rem);
+                font-size: clamp(1.5rem, 7vw, 1.95rem);
             }
 
             .skill-cap-card {
-                padding: 22px 18px;
+                padding: 20px 16px;
+            }
+
+            .project-info {
+                padding: 18px 14px;
+            }
+
+            .project-links a,
+            .project-links button {
+                flex: 1 1 100%;
+                text-align: center;
+                justify-content: center;
             }
 
             .focus-statement {
-                font-size: clamp(1.1rem, 4vw, 1.4rem);
+                font-size: clamp(1.05rem, 4vw, 1.35rem);
             }
 
             .footer-links-wrap {
                 flex-direction: column;
-                gap: 28px;
+                gap: 24px;
             }
 
             .tp-hire-title {
-                font-size: 1.6rem;
-            }
-
-            .tp-hire-sec {
-                padding: 24px 16px;
-            }
-        }
-
-        /* ── Extra small (≤360px) ── */
-        @media (max-width: 360px) {
-            .hero-left h1 {
-                font-size: 1.9rem;
-            }
-
-            .section-title {
                 font-size: 1.5rem;
             }
 
             .tp-hire-sec {
-                padding: 20px 14px;
+                padding: 22px 14px;
+            }
+        }
+
+        /* ── Extra Small Mobile (≤360px) ── */
+        @media (max-width: 360px) {
+            section {
+                padding: 65px 3.5% 38px 3.5%;
+            }
+
+            header,
+            header.scrolled {
+                padding: 12px 3.5%;
+            }
+
+            .logo {
+                font-size: 1.25rem;
+            }
+
+            .hero-left h1 {
+                font-size: 1.75rem;
+            }
+
+            .section-title {
+                font-size: 1.45rem;
+            }
+
+            .badge {
+                font-size: 0.7rem;
+                padding: 5px 10px;
+            }
+
+            .tp-hire-sec {
+                padding: 18px 12px;
             }
 
             .tp-hire-title {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
+            }
+        }
+
+        .proj-video-btn {
+            background: rgba(129, 140, 248, 0.08);
+            border: 1px solid rgba(129, 140, 248, 0.28);
+            color: var(--gold);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s var(--ease);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .proj-video-btn:hover {
+            background: var(--gold);
+            color: #050505;
+            border-color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px rgba(129, 140, 248, 0.25);
+        }
+
+        /* ─── DEMO VIDEO LINK TOAST NOTIFICATION ─── */
+        .demo-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(30px);
+            background: rgba(13, 13, 16, 0.94);
+            border: 1px solid rgba(129, 140, 248, 0.35);
+            color: var(--white);
+            padding: 12px 22px;
+            border-radius: 12px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(129, 140, 248, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 10000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .demo-toast.active {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
+        }
+
+        .demo-toast i {
+            color: var(--gold);
+            font-size: 1.05rem;
+        }
+
+        /* ─── AI CHATBOT & VOICE CALL INTERFACES ─── */
+
+        /* Floating Trigger Launcher */
+        .chatbot-launcher {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 9990;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chat-trigger-pill {
+            background: #0f1015;
+            border: 1px solid rgba(129, 140, 248, 0.35);
+            border-radius: 30px;
+            padding: 8px 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.84rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(129, 140, 248, 0.2);
+            transition: all 0.3s var(--ease);
+        }
+
+        .chat-trigger-pill:hover {
+            transform: translateY(-2px);
+            border-color: var(--gold);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7), 0 0 35px rgba(129, 140, 248, 0.35);
+        }
+
+        .chat-trigger-pill.voice-call-pill {
+            background: linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(129, 140, 248, 0.25));
+            border-color: rgba(0, 242, 254, 0.45);
+            color: #00f2fe;
+        }
+
+        .chat-trigger-pill.voice-call-pill:hover {
+            border-color: #00f2fe;
+            box-shadow: 0 12px 35px rgba(0, 242, 254, 0.3);
+            color: #ffffff;
+        }
+
+        .chat-trigger-pill i {
+            font-size: 0.95rem;
+        }
+
+        .chat-pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 10px #10b981;
+            animation: dotPulse 1.8s infinite;
+        }
+
+        @keyframes dotPulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(0.85);
+            }
+        }
+
+        /* Proactive Greeting Bubble */
+        .chat-greeting-bubble {
+            position: fixed;
+            bottom: 84px;
+            right: 28px;
+            z-index: 9989;
+            background: #13141a;
+            border: 1px solid rgba(129, 140, 248, 0.25);
+            border-radius: 14px;
+            padding: 12px 18px;
+            max-width: 310px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            color: var(--white);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+            transition: all 0.4s var(--ease);
+        }
+
+        .chat-greeting-bubble.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        .chat-greeting-close {
+            background: transparent;
+            border: none;
+            color: var(--muted);
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .chat-greeting-close:hover {
+            color: #ffffff;
+        }
+
+        /* ─── 1. CHATGPT-STYLE TEXT CHATBOT ─── */
+        .chatgpt-window {
+            position: fixed;
+            bottom: 86px;
+            right: 28px;
+            width: 410px;
+            max-width: calc(100vw - 32px);
+            height: 600px;
+            max-height: calc(100vh - 110px);
+            background: #0f1015;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            z-index: 9995;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 25px 65px rgba(0, 0, 0, 0.85), 0 0 45px rgba(129, 140, 248, 0.12);
+            opacity: 0;
+            transform: translateY(20px) scale(0.96);
+            pointer-events: none;
+            transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+        }
+
+        .chatgpt-window.open {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+        }
+
+        /* ChatGPT Header */
+        .chatgpt-header {
+            padding: 14px 18px;
+            background: #14151c;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chatgpt-model-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chatgpt-avatar-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold2), var(--gold));
+            color: #050505;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .chatgpt-model-name {
+            font-size: 0.86rem;
+            font-weight: 700;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .chatgpt-model-tag {
+            font-size: 0.68rem;
+            color: var(--gold);
+            background: rgba(129, 140, 248, 0.12);
+            padding: 2px 7px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .chatgpt-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .chatgpt-call-toggle-btn {
+            background: rgba(0, 242, 254, 0.1);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            color: #00f2fe;
+            padding: 5px 12px;
+            border-radius: 16px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .chatgpt-call-toggle-btn:hover {
+            background: #00f2fe;
+            color: #000;
+            border-color: #00f2fe;
+        }
+
+        .chatgpt-tool-btn {
+            background: transparent;
+            border: none;
+            color: var(--muted);
+            font-size: 0.85rem;
+            cursor: pointer;
+            padding: 6px 8px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .chatgpt-tool-btn:hover {
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        /* ChatGPT Messages Stream */
+        .chatgpt-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            scroll-behavior: smooth;
+        }
+
+        .chatgpt-row {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .chatgpt-row.user {
+            justify-content: flex-end;
+        }
+
+        .chatgpt-row.bot {
+            justify-content: flex-start;
+        }
+
+        .chatgpt-bubble {
+            max-width: 82%;
+            padding: 12px 16px;
+            font-size: 0.84rem;
+            line-height: 1.6;
+            word-break: break-word;
+        }
+
+        .chatgpt-bubble.user {
+            background: #272833;
+            color: #ffffff;
+            border-radius: 18px 18px 4px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .chatgpt-bubble.bot {
+            background: #14151d;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #ececf1;
+            border-radius: 18px 18px 18px 4px;
+        }
+
+        .chatgpt-bot-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .chatgpt-action-pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--muted);
+            border-radius: 12px;
+            padding: 3px 9px;
+            font-size: 0.7rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .chatgpt-action-pill:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+
+        /* Suggestion Chips */
+        .chatgpt-quick-chips {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .chatgpt-chip-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #d1d5db;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 0.76rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chatgpt-chip-btn:hover {
+            background: rgba(129, 140, 248, 0.12);
+            border-color: var(--gold);
+            color: #ffffff;
+            transform: translateX(3px);
+        }
+
+        /* Typing indicator */
+        .chatgpt-typing-row {
+            display: none;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 14px;
+            background: #14151d;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            width: fit-content;
+        }
+
+        .chatgpt-typing-row.active {
+            display: flex;
+        }
+
+        .chatgpt-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: typingDotBounce 1.3s infinite ease-in-out;
+        }
+
+        .chatgpt-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .chatgpt-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typingDotBounce {
+
+            0%,
+            60%,
+            100% {
+                transform: translateY(0);
+                opacity: 0.35;
+            }
+
+            30% {
+                transform: translateY(-4px);
+                opacity: 1;
+            }
+        }
+
+        /* ChatGPT Input Footer */
+        .chatgpt-input-container {
+            padding: 12px 16px 14px 16px;
+            background: #14151c;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .chatgpt-input-capsule {
+            display: flex;
+            align-items: center;
+            background: #1c1d26;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 4px 6px 4px 14px;
+            gap: 8px;
+            transition: border-color 0.25s, box-shadow 0.25s;
+        }
+
+        .chatgpt-input-capsule:focus-within {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.15);
+        }
+
+        .chatgpt-text-input {
+            flex-grow: 1;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            outline: none;
+            padding: 8px 0;
+        }
+
+        .chatgpt-text-input::placeholder {
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        .chatgpt-icon-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.85rem;
+        }
+
+        .chatgpt-mic-action {
+            background: transparent;
+            color: var(--muted);
+        }
+
+        .chatgpt-mic-action:hover {
+            color: var(--gold);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .chatgpt-send-action {
+            background: rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .chatgpt-send-action.active {
+            background: var(--gold);
+            color: #050505;
+        }
+
+        .chatgpt-send-action.active:hover {
+            background: #ffffff;
+            transform: scale(1.05);
+        }
+
+        /* ─── 2. VOICE CHATBOT — CALLING INTERFACE (voiceagent.png design) ─── */
+        .voice-call-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9998;
+            background: rgba(2, 3, 6, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s var(--ease);
+        }
+
+        .voice-call-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Phone Screen Mockup */
+        .phone-call-modal {
+            width: 380px;
+            max-width: 100%;
+            height: 640px;
+            max-height: 92vh;
+            background: linear-gradient(180deg, #0e121d 0%, #06080d 100%);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            border-radius: 36px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9), 0 0 50px rgba(0, 242, 254, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            position: relative;
+            transform: translateY(24px) scale(0.96);
+            transition: transform 0.35s var(--ease);
+        }
+
+        .voice-call-overlay.active .phone-call-modal {
+            transform: translateY(0) scale(1);
+        }
+
+        /* Phone Status Bar */
+        .phone-status-bar {
+            padding: 14px 22px 8px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.65);
+            font-family: monospace;
+        }
+
+        .phone-notch {
+            width: 80px;
+            height: 18px;
+            background: #000;
+            border-radius: 10px;
+            margin: 0 auto;
+        }
+
+        /* Caller Information */
+        .phone-caller-info {
+            text-align: center;
+            padding: 10px 20px 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .caller-avatar-circle {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 242, 254, 0.2) 0%, rgba(129, 140, 248, 0.1) 70%);
+            border: 2px solid #00f2fe;
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #00f2fe;
+            margin-bottom: 12px;
+            animation: avatarPulse 2.8s infinite;
+        }
+
+        @keyframes avatarPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(0, 242, 254, 0.35);
+            }
+
+            50% {
+                box-shadow: 0 0 35px rgba(0, 242, 254, 0.75);
+            }
+        }
+
+        .caller-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .call-duration-timer {
+            font-size: 0.78rem;
+            color: #10b981;
+            font-family: monospace;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .call-status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 242, 254, 0.1);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            color: #00f2fe;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .call-status-badge.listening {
+            border-color: #10b981;
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.12);
+        }
+
+        .call-status-badge.processing {
+            border-color: #f59e0b;
+            color: #f59e0b;
+            background: rgba(245, 158, 11, 0.12);
+        }
+
+        .call-status-badge.speaking {
+            border-color: #818cf8;
+            color: #818cf8;
+            background: rgba(129, 140, 248, 0.15);
+        }
+
+        .call-status-badge.muted {
+            border-color: #ef4444;
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.12);
+        }
+
+        /* Central Glowing Soundwave Visualizer (matches voiceagent.png) */
+        .call-wave-visualizer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            height: 90px;
+            margin: 10px 0;
+            padding: 0 20px;
+        }
+
+        .call-wave-bar {
+            width: 4px;
+            height: 18px;
+            background: linear-gradient(180deg, #00f2fe 0%, #818cf8 100%);
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+            transition: height 0.12s ease;
+        }
+
+        /* Live Spoken Transcription Display Card */
+        .live-transcript-card {
+            background: rgba(14, 18, 28, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            margin: 0 20px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 150px;
+            overflow-y: auto;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .transcript-line {
+            font-size: 0.8rem;
+            line-height: 1.5;
+            color: #cbd5e1;
+            word-break: break-word;
+        }
+
+        .transcript-line.user-transcript {
+            color: #00f2fe;
+            font-weight: 500;
+        }
+
+        .transcript-line.ai-transcript {
+            color: #e2e8f0;
+        }
+
+        .transcript-label {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            opacity: 0.7;
+            margin-right: 4px;
+        }
+
+        /* Bottom Phone Actions (matches voiceagent.png) */
+        .phone-call-controls {
+            padding: 16px 24px 28px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            background: rgba(8, 10, 16, 0.85);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .phone-actions-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .phone-action-btn-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .phone-action-circle {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.25s var(--ease);
+        }
+
+        .phone-action-circle:hover {
+            background: rgba(255, 255, 255, 0.18);
+            transform: scale(1.06);
+        }
+
+        .phone-action-circle.active {
+            background: #ef4444;
+            border-color: #ef4444;
+            color: #ffffff;
+        }
+
+        .phone-action-label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+        }
+
+        .end-call-pill-btn {
+            width: 100%;
+            background: #ef4444;
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            padding: 13px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.86rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.45);
+            transition: all 0.25s var(--ease);
+        }
+
+        .end-call-pill-btn:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.6);
+        }
+
+        /* Cursor fix for interactive widgets */
+        .chatbot-launcher,
+        .chatbot-launcher *,
+        .chatgpt-window,
+        .chatgpt-window *,
+        .phone-call-modal,
+        .phone-call-modal *,
+        .chat-greeting-bubble,
+        .chat-greeting-bubble * {
+            cursor: auto !important;
+        }
+
+        .chat-trigger-pill,
+        .chatgpt-tool-btn,
+        .chatgpt-call-toggle-btn,
+        .chatgpt-chip-btn,
+        .chatgpt-action-pill,
+        .chatgpt-icon-btn,
+        .phone-action-circle,
+        .end-call-pill-btn,
+        .chat-greeting-close {
+            cursor: pointer !important;
+        }
+
+        /* ── Responsive Chatbot & Voice Calling Interface ── */
+        @media (max-width: 768px) {
+            .chatbot-launcher {
+                bottom: 20px;
+                right: 20px;
+                gap: 8px;
+            }
+
+            .chatgpt-window {
+                width: calc(100vw - 24px);
+                right: 12px;
+                bottom: 76px;
+                height: min(560px, calc(100vh - 96px));
+                height: min(560px, calc(100dvh - 96px));
+                max-height: calc(100dvh - 96px);
+                border-radius: 18px;
+            }
+
+            .phone-call-modal {
+                width: min(380px, calc(100vw - 24px));
+                height: min(620px, 92vh);
+                height: min(620px, 92dvh);
+                max-height: 92dvh;
+                border-radius: 28px;
+            }
+
+            .chat-greeting-bubble {
+                right: 20px;
+                bottom: 78px;
+                max-width: calc(100vw - 40px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .chatbot-launcher {
+                bottom: 14px;
+                right: 14px;
+                gap: 6px;
+            }
+
+            .chat-trigger-pill {
+                padding: 7px 13px;
+                font-size: 0.78rem;
+                gap: 6px;
+            }
+
+            .chat-trigger-pill i {
+                font-size: 0.85rem;
+            }
+
+            .chatgpt-window {
+                width: calc(100vw - 16px);
+                right: 8px;
+                bottom: 68px;
+                height: min(530px, calc(100vh - 84px));
+                height: min(530px, calc(100dvh - 84px));
+                max-height: calc(100dvh - 84px);
+                border-radius: 16px;
+            }
+
+            .chatgpt-header {
+                padding: 11px 14px;
+            }
+
+            .chatgpt-model-name {
+                font-size: 0.82rem;
+            }
+
+            .chatgpt-call-toggle-btn {
+                padding: 4px 10px;
+                font-size: 0.72rem;
+            }
+
+            .chatgpt-messages {
+                padding: 14px 12px;
+                gap: 12px;
+            }
+
+            .chatgpt-bubble {
+                max-width: 90%;
+                font-size: 0.82rem;
+                padding: 10px 14px;
+            }
+
+            .chatgpt-input-container {
+                padding: 10px 12px 12px 12px;
+            }
+
+            .chat-greeting-bubble {
+                right: 14px;
+                bottom: 68px;
+                max-width: calc(100vw - 28px);
+                font-size: 0.78rem;
+                padding: 10px 14px;
+            }
+
+            /* Phone Calling Screen on Mobile */
+            .phone-call-modal {
+                width: min(360px, calc(100vw - 16px));
+                height: min(600px, 94vh);
+                height: min(600px, 94dvh);
+                max-height: 94dvh;
+                border-radius: 24px;
+            }
+
+            .phone-caller-info {
+                padding: 6px 14px 0 14px;
+            }
+
+            .caller-avatar-circle {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+                margin-bottom: 8px;
+            }
+
+            .caller-name {
+                font-size: 1.15rem;
+            }
+
+            .call-wave-visualizer {
+                height: 70px;
+                margin: 6px 0;
+                padding: 0 12px;
+            }
+
+            .live-transcript-card {
+                margin: 0 14px;
+                padding: 10px 12px;
+                max-height: 130px;
+            }
+
+            .phone-call-controls {
+                padding: 12px 16px 20px 16px;
+                gap: 14px;
+            }
+
+            .phone-action-circle {
+                width: 46px;
+                height: 46px;
+                font-size: 1rem;
+            }
+
+            .end-call-pill-btn {
+                padding: 11px;
+                font-size: 0.82rem;
+            }
+
+            /* Toast on Mobile */
+            .demo-toast {
+                width: calc(100vw - 28px);
+                max-width: 380px;
+                padding: 10px 16px;
+                font-size: 0.82rem;
+                bottom: 20px;
+                justify-content: center;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .chatbot-launcher {
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .chat-trigger-pill {
+                padding: 6px 10px;
+                font-size: 0.74rem;
+                gap: 5px;
+            }
+
+            .caller-avatar-circle {
+                width: 52px;
+                height: 52px;
+                font-size: 1.3rem;
+            }
+
+            .call-wave-visualizer {
+                height: 55px;
+            }
+
+            .phone-action-circle {
+                width: 42px;
+                height: 42px;
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -2040,11 +3248,14 @@
 
 <body>
 
-    <!-- Loader -->
-    <div id="loader">
-        <div class="loader-logo">TanyaVerse<span>.</span></div>
-        <div class="loader-bar">
-            <div class="loader-progress"></div>
+    <!-- Minimal Premium Loader -->
+    <div id="loader" aria-label="Loading Tanya's Portfolio" role="status">
+        <div class="loader-name" aria-hidden="true">
+            <span class="loader-letter" style="--char-i: 0;">T</span>
+            <span class="loader-letter" style="--char-i: 1;">A</span>
+            <span class="loader-letter" style="--char-i: 2;">N</span>
+            <span class="loader-letter" style="--char-i: 3;">Y</span>
+            <span class="loader-letter" style="--char-i: 4;">A</span>
         </div>
     </div>
 
@@ -2083,29 +3294,31 @@
         <a href="#projects" data-drawer-link>Projects</a>
         <a href="#connect" data-drawer-link>Connect</a>
         <a href="#contact" data-drawer-link>Contact</a>
-        <a href="#contact" class="btn-premium btn-font" data-drawer-link style="margin-top: 8px; font-size: 1rem;">Let's Talk</a>
+        <a href="#contact" class="btn-premium btn-font" data-drawer-link style="margin-top: 8px; font-size: 1rem;">Let's
+            Talk</a>
     </nav>
 
     <!-- ─── HERO ─── -->
     <section id="home">
         <div class="hero-grid">
             <div class="hero-left">
-                <span class="creative-tag">Web Dev · AI · Automation · SaaS</span>
+                <span class="creative-tag">AI Automation · Web Development · n8n · AI Agents</span>
                 <h1>Hello, I'm <br><span>Tanya Mahrauliya</span></h1>
                 <div class="typer-container">
                     <span class="hero-tagline" id="typewriter"></span>
                 </div>
                 <p class="hero-desc">
-                    I build websites, AI-powered systems, SaaS products, and automation workflows — while continuously
-                    exploring new technologies and turning ideas into working projects.
+                    I build modern websites and practical AI automations that help businesses save time, streamline
+                    daily operations, and grow. Specializing in n8n workflows, AI agents, and web development.
                 </p>
-                <div class="badge-container">
-                    <span class="badge">Web Development</span>
+                <!-- <div class="badge-container">
                     <span class="badge">AI Automation</span>
-                    <span class="badge">SaaS</span>
-                    <span class="badge">n8n</span>
+                    <span class="badge">Web Development</span>
+                    <span class="badge">n8n Workflows</span>
                     <span class="badge">AI Agents</span>
-                </div>
+                    <span class="badge">API Integrations</span>
+                    <span class="badge">WhatsApp & Voice AI</span>
+                </div> -->
                 <div class="hero-buttons">
                     <a href="#projects" class="btn-premium btn-font">View My Work</a>
                     <a href="#contact" class="btn-secondary">Get In Touch</a>
@@ -2138,38 +3351,48 @@
     <section id="about" class="reveal-element">
         <div class="section-title-wrap">
             <span class="section-subtitle">About Me</span>
-            <h2 class="section-title">A little about me</h2>
+            <h2 class="section-title">What I Do & What I Build</h2>
         </div>
         <div class="about-grid">
             <div class="about-story">
-                <h3>Web developer and AI automation builder </h3>
-                <p>I'm Tanya — a web developer and AI automation builder who enjoys learning by building real projects.
-                    I'm interested in AI, automation, SaaS, interactive websites and exploring new technologies.</p>
+                <h3>AI Automation Specialist & Web Developer</h3>
+                <p>I build modern websites and practical AI automation systems that help businesses eliminate manual
+                    work and grow. Using tools like n8n, AI agents, and modern web development, I connect applications,
+                    automate daily tasks, and create fast, user-friendly digital experiences.</p>
+                <p>From WhatsApp booking bots and customer AI assistants to business web applications, I focus on clean,
+                    reliable solutions that solve real business problems.</p>
 
                 <div class="interest-chips" style="margin-top: 28px;">
+                    <span class="interest-chip"><i class="fas fa-sitemap"></i>n8n Automations</span>
+                    <span class="interest-chip"><i class="fas fa-robot"></i>AI Agents & LLMs</span>
+                    <span class="interest-chip"><i class="fas fa-plug"></i>API Integrations</span>
                     <span class="interest-chip"><i class="fas fa-code"></i>Web Development</span>
-                    <span class="interest-chip"><i class="fas fa-robot"></i>AI Tools & Agents</span>
-                    <span class="interest-chip"><i class="fas fa-sitemap"></i>Automation</span>
-                    <span class="interest-chip"><i class="fas fa-layer-group"></i>SaaS & Products</span>
-                    <span class="interest-chip"><i class="fas fa-cube"></i>Creative & 3D Sites</span>
+                    <span class="interest-chip"><i class="fas fa-comments"></i>WhatsApp & Voice AI</span>
                 </div>
             </div>
-            <div>
-                <h3 class="syne-heading"
-                    style="font-size:0.8rem; letter-spacing:2px; margin-bottom:30px; color: var(--gold);">Learning
-                    Journey</h3>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <span class="time-epoch">2026 — Present</span>
-                        <h4 class="time-title">Web Developer & AI Builder</h4>
-                        <p class="time-desc">Building responsive websites, AI automations and SaaS experiments using
-                            HTML, CSS, JavaScript, and modern AI tools.</p>
+            <div class="about-highlights">
+                <div class="about-highlight-card glass-card">
+                    <div class="highlight-icon"><i class="fas fa-bolt"></i></div>
+                    <div>
+                        <h4>Automate Manual Work</h4>
+                        <p>Connecting business apps, spreadsheets, and CRMs using n8n workflows so your daily processes
+                            run on autopilot.</p>
                     </div>
-                    <div class="timeline-item">
-                        <span class="time-epoch">2025 — 2026</span>
-                        <h4 class="time-title">Learning Through Projects</h4>
-                        <p class="time-desc">Built a solid foundation in web development and started exploring AI
-                            automation, n8n workflows, and product building.</p>
+                </div>
+                <div class="about-highlight-card glass-card">
+                    <div class="highlight-icon"><i class="fas fa-robot"></i></div>
+                    <div>
+                        <h4>Smart AI Assistants</h4>
+                        <p>Setting up custom AI agents and WhatsApp bots to answer customer queries, capture leads, and
+                            book appointments 24/7.</p>
+                    </div>
+                </div>
+                <div class="about-highlight-card glass-card">
+                    <div class="highlight-icon"><i class="fas fa-laptop-code"></i></div>
+                    <div>
+                        <h4>Modern Web Development</h4>
+                        <p>Developing responsive, fast-loading business websites and web applications that convert
+                            visitors into clients.</p>
                     </div>
                 </div>
             </div>
@@ -2182,64 +3405,64 @@
     <section id="skills" class="reveal-element">
         <div class="section-title-wrap">
             <span class="section-subtitle">Capabilities</span>
-            <h2 class="section-title">What I Can Build</h2>
+            <h2 class="section-title">What I Can Build For You</h2>
         </div>
         <div class="skills-cap-grid stagger-children">
 
             <div class="skill-cap-card glass-card">
                 <div class="skill-cap-icon"><i class="fas fa-laptop-code"></i></div>
                 <span class="skill-cap-title">Web Development</span>
-                <p class="skill-cap-desc">Building responsive, modern and interactive websites with strong UI and user
-                    experience. From simple pages to full multi-section sites.</p>
+                <p class="skill-cap-desc">Building clean, modern, and mobile-friendly websites that load fast, look
+                    professional, and effectively convert visitors into customers.</p>
             </div>
 
             <div class="skill-cap-card glass-card">
                 <div class="skill-cap-icon"><i class="fas fa-bolt"></i></div>
-                <span class="skill-cap-title">AI Automation</span>
-                <p class="skill-cap-desc">Designing AI-powered workflows and systems that connect tools, data and user
-                    interactions — reducing manual effort with intelligent automation.</p>
+                <span class="skill-cap-title">n8n Automation</span>
+                <p class="skill-cap-desc">Creating practical automated workflows that connect your favorite business
+                    tools, eliminate manual data entry, and run smoothly 24/7.</p>
             </div>
 
             <div class="skill-cap-card glass-card">
                 <div class="skill-cap-icon"><i class="fas fa-robot"></i></div>
-                <span class="skill-cap-title">AI Agents</span>
-                <p class="skill-cap-desc">Exploring and building AI agents for tasks such as customer interaction,
-                    information handling and workflow automation.</p>
+                <span class="skill-cap-title">AI Agents & Assistants</span>
+                <p class="skill-cap-desc">Setting up smart AI assistants and chatbots that answer customer questions,
+                    gather information, and assist your team automatically.</p>
             </div>
 
             <div class="skill-cap-card glass-card">
-                <div class="skill-cap-icon"><i class="fas fa-project-diagram"></i></div>
-                <span class="skill-cap-title">n8n Automation</span>
-                <p class="skill-cap-desc">Creating workflow automations that connect applications, APIs, databases and
-                    AI tools through n8n's visual automation platform.</p>
+                <div class="skill-cap-icon"><i class="fab fa-whatsapp"></i></div>
+                <span class="skill-cap-title">WhatsApp Automation</span>
+                <p class="skill-cap-desc">Automating WhatsApp conversations to handle incoming inquiries, collect lead
+                    details, and confirm bookings directly in chat.</p>
+            </div>
+
+            <div class="skill-cap-card glass-card">
+                <div class="skill-cap-icon"><i class="fas fa-plug"></i></div>
+                <span class="skill-cap-title">API & Webhook Integrations</span>
+                <p class="skill-cap-desc">Connecting services like Airtable, Google Sheets, CRMs, and payment tools so
+                    your data flows seamlessly without copy-pasting.</p>
             </div>
 
             <div class="skill-cap-card glass-card">
                 <div class="skill-cap-icon"><i class="fas fa-layer-group"></i></div>
-                <span class="skill-cap-title">SaaS & Product Building</span>
-                <p class="skill-cap-desc">Building and experimenting with web-based products, dashboards and SaaS ideas
-                    — from prototype to working product.</p>
+                <span class="skill-cap-title">AI-Powered Web Apps</span>
+                <p class="skill-cap-desc">Developing functional web applications and dashboards with authentication,
+                    clean interfaces, and integrated AI features.</p>
             </div>
 
             <div class="skill-cap-card glass-card">
-                <div class="skill-cap-icon"><i class="fas fa-microchip"></i></div>
-                <span class="skill-cap-title">AI-Powered Development</span>
-                <p class="skill-cap-desc">Using modern AI development tools to research, prototype, build and improve
-                    applications faster and more effectively.</p>
+                <div class="skill-cap-icon"><i class="fas fa-microphone-alt"></i></div>
+                <span class="skill-cap-title">Voice AI Solutions</span>
+                <p class="skill-cap-desc">Building automated voice agents for appointment booking, customer intake, and
+                    answering frequent phone inquiries.</p>
             </div>
 
             <div class="skill-cap-card glass-card">
                 <div class="skill-cap-icon"><i class="fas fa-cube"></i></div>
-                <span class="skill-cap-title">Creative Web Experiences</span>
-                <p class="skill-cap-desc">Creating interactive websites with animations, 3D elements and engaging user
-                    experiences that go beyond the standard template.</p>
-            </div>
-
-            <div class="skill-cap-card glass-card">
-                <div class="skill-cap-icon"><i class="fas fa-film"></i></div>
-                <span class="skill-cap-title">Content Creation</span>
-                <p class="skill-cap-desc">Creating educational and experimental content around technology, AI,
-                    development and my learning journey.</p>
+                <span class="skill-cap-title">Responsive Web Design</span>
+                <p class="skill-cap-desc">Designing intuitive layouts with smooth animations, clear typography, and a
+                    polished look on phones, tablets, and desktops.</p>
             </div>
 
         </div>
@@ -2249,7 +3472,7 @@
     <section id="projects" class="reveal-element">
         <div class="section-title-wrap">
             <span class="section-subtitle">Selected Works</span>
-            <h2 class="section-title">Things I've Built</h2>
+            <h2 class="section-title">Featured Projects & Demos</h2>
         </div>
 
         <div class="projects-grid stagger-children">
@@ -2258,19 +3481,20 @@
             <div class="project-card glass-card">
                 <div class="project-img-frame">
                     <span class="project-num">01</span>
-                    <img src="Screenshot 2026-10-14 220426.png" alt="Complete Website Project" />
+                    <img src="Screenshot 2026-10-14 220426.png" alt="Dental Clinic Website" />
                 </div>
                 <div class="project-info">
                     <h3 class="project-title">Dental Clinic Website</h3>
-                    <p class="project-desc">A modern, responsive dental clinic website designed to showcase dental services, build patient trust, and make appointment booking simple and convenient.</p>
+                    <p class="project-desc">A modern, mobile-friendly website designed to showcase dental services,
+                        build patient trust, and make online appointment booking simple.</p>
                     <div class="project-tags">
-                        <span class="project-tag">Web Design</span>
+                        <span class="project-tag">Web Development</span>
                         <span class="project-tag">UI/UX</span>
-                        <span class="project-tag">Responsive Design</span>
+                        <span class="project-tag">Responsive</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://demofordentist.vercel.app" target="_blank" class="proj-link"><i
-                                class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="https://demofordentist.vercel.app" target="_blank" rel="noopener noreferrer" class="proj-link"><i
+                                class="fas fa-external-link-alt"></i> Live Site</a>
                     </div>
                 </div>
             </div>
@@ -2283,16 +3507,16 @@
                 </div>
                 <div class="project-info">
                     <h3 class="project-title">Website + AI Chatbot</h3>
-                    <p class="project-desc">A website integrated with an AI chatbot designed to answer questions and
-                        interact with visitors.</p>
+                    <p class="project-desc">A business website integrated with an AI chatbot to answer visitor
+                        questions, provide service details, and capture customer inquiries.</p>
                     <div class="project-tags">
                         <span class="project-tag">Website</span>
                         <span class="project-tag">AI Chatbot</span>
-                        <span class="project-tag">AI Integration</span>
+                        <span class="project-tag">API Integration</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://clinicdemo001.netlify.app" target="_blank" class="proj-link"><i
-                                class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="https://clinicdemo001.netlify.app" target="_blank" rel="noopener noreferrer" class="proj-link"><i
+                                class="fas fa-external-link-alt"></i> Live Site</a>
                     </div>
                 </div>
             </div>
@@ -2304,13 +3528,17 @@
                     <img src="whatsappautomation.png" alt="WhatsApp Automation Workflow" />
                 </div>
                 <div class="project-info">
-                    <h3 class="project-title">WhatsApp Automation</h3>
-                    <p class="project-desc">An automated WhatsApp workflow designed to handle messages, collect
-                        information and trigger follow-up actions.</p>
+                    <h3 class="project-title">WhatsApp Automation Workflow</h3>
+                    <p class="project-desc">An automated n8n workflow that receives WhatsApp messages, logs customer
+                        details, and sends instant automated replies.</p>
                     <div class="project-tags">
-                        <span class="project-tag">WhatsApp</span>
-                        <span class="project-tag">Automation</span>
                         <span class="project-tag">n8n</span>
+                        <span class="project-tag">WhatsApp API</span>
+                        <span class="project-tag">Automation</span>
+                    </div>
+                    <div class="project-links">
+                        <button class="proj-video-btn" onclick="openDemoVideo('whatsapp', event)"><i
+                                class="fas fa-play-circle"></i> Watch Demo</button>
                     </div>
                 </div>
             </div>
@@ -2323,47 +3551,43 @@
                 </div>
                 <div class="project-info">
                     <h3 class="project-title">AI Voice Agent</h3>
-                    <p class="project-desc">An AI voice agent designed to interact with users, answer common questions
-                        and handle conversations automatically.</p>
+                    <p class="project-desc">A conversational voice assistant designed to interact with callers, answer
+                        frequent questions, and schedule consultations.</p>
                     <div class="project-tags">
-                        <span class="project-tag">AI Voice</span>
+                        <span class="project-tag">Voice AI</span>
                         <span class="project-tag">AI Agent</span>
                         <span class="project-tag">Automation</span>
                     </div>
+                    <div class="project-links">
+                        <button class="proj-video-btn" onclick="openDemoVideo('voiceagent', event)"><i
+                                class="fas fa-play-circle"></i> Watch Demo</button>
+                    </div>
                 </div>
             </div>
 
-
-     <!-- Project 4 — AI Voice Agent -->
+            <!-- Project 5 — GrowthOS -->
             <div class="project-card glass-card">
-                <div class="project-img-frame" id="proj-img-4">
+                <div class="project-img-frame" id="proj-img-5">
                     <span class="project-num">05</span>
-                    <img src="Screenshot 2026-10-10 095725.png" alt="AI Voice Agent" />
+                    <img src="Screenshot 2026-10-10 095725.png" alt="GrowthOS SaaS" />
                 </div>
                 <div class="project-info">
                     <h3 class="project-title">GrowthOS — Personal Growth SaaS</h3>
-                    <p class="project-desc">A personal growth platform that helps users set goals, track habits and tasks, 
-                        focus on important work, journal progress, and use an AI Growth Coach to improve consistently.</p>
+                    <p class="project-desc">A web application for personal productivity, featuring habit tracking, a
+                        focus timer, daily journaling, and an AI growth coach.</p>
                     <div class="project-tags">
                         <span class="project-tag">SaaS</span>
-                        <span class="project-tag">AI</span>
-                     <span class="project-tag">Productivity</span>
+                        <span class="project-tag">AI Coach</span>
                         <span class="project-tag">Web App</span>
-                           <span class="project-tag">AI Growth Coach</span>
                     </div>
-                      <div class="project-links">
-                        <a href="https://growthos-git-main-webhub4.vercel.app/" target="_blank" class="proj-link"><i
-                                class="fas fa-external-link-alt"></i> Live Demo</a>
+                    <div class="project-links">
+                        <a href="https://growthos-git-main-webhub4.vercel.app/" target="_blank" rel="noopener noreferrer" class="proj-link"><i
+                                class="fas fa-external-link-alt"></i> Live Site</a>
                     </div>
                 </div>
             </div>
 
-
-
         </div>
-    </section>
-
-    </div>
     </section>
 
     <!-- ─── CURRENT FOCUS ─── -->
@@ -2371,28 +3595,29 @@
         <div class="focus-content">
             <div class="focus-status">
                 <div class="focus-pulse"></div>
-                Currently Building
+                Current Focus
             </div>
-            <h2 class="section-title" style="margin-bottom: 30px;">What I'm Building Now</h2>
-       
-            <div class="focus-tags">
-                <span class="focus-tag">🤖 AI Agents</span>
-                <span class="focus-tag">⚡ n8n Automation</span>
-                <span class="focus-tag">🚀 SaaS Products</span>
-                <span class="focus-tag">🌐 Interactive Websites</span>
-                <span class="focus-tag">🎙️ Voice AI</span>
-                <span class="focus-tag">📦 Product Experiments</span>
-            </div>
+            Active Deployments & Systems
+        </div>
+        <h2 class="section-title" style="margin-bottom: 24px;">What I'm Working On</h2>
+
+        <div class="focus-tags">
+            <span class="focus-tag">🤖 Smart AI Agents</span>
+            <span class="focus-tag">⚡ n8n Workflows</span>
+            <span class="focus-tag">🔌 API Integrations</span>
+            <span class="focus-tag">🚀 AI-Powered SaaS</span>
+            <span class="focus-tag">🎙️ Voice AI Assistants</span>
+            <span class="focus-tag">🌐 Business Websites</span>
+        </div>
         </div>
     </section>
-
     <!-- ─── FIND ME ONLINE (CONNECT) ─── -->
     <section id="connect" class="reveal-element">
         <div class="section-title-wrap">
             <span class="section-subtitle">Online</span>
             <h2 class="section-title">Find Me Online</h2>
-            <p style="color: var(--muted); font-size: 1rem; margin-top: 15px; max-width: 500px;">I share what I'm
-                learning, building and experimenting with technology.</p>
+            <p style="color: var(--muted); font-size: 0.88rem; margin-top: 12px; max-width: 500px;">Sharing practical
+                automation tips, workflow breakdowns, and web development projects.</p>
         </div>
         <div class="connect-grid stagger-children">
 
@@ -2405,7 +3630,7 @@
                     <span class="connect-count" data-target="4000" data-suffix="K+">0</span>
                     <span class="connect-count-label">Followers</span>
                 </div>
-                <p class="connect-desc">Sharing my development journey, projects and experiments as I build them.</p>
+                <p class="connect-desc">Sharing quick tips, automation workflows, and web development projects.</p>
                 <a href="https://www.instagram.com/tanya_verse01" target="_blank" class="connect-link">
                     @tanya_verse01 <i class="fas fa-arrow-right"></i>
                 </a>
@@ -2424,7 +3649,7 @@
                     <span class="connect-count" data-target="500" data-suffix="+" style="font-size: 1.2rem;">0</span>
                     <span class="connect-count-label">Connections</span>
                 </div>
-                <p class="connect-desc">Connecting with developers, designers and builders across the tech space.</p>
+                <p class="connect-desc">Connecting with business owners, founders, and developers.</p>
                 <a href="https://www.linkedin.com/in/tanya-mahrauliya" target="_blank" class="connect-link">
                     tanya-mahrauliya <i class="fas fa-arrow-right"></i>
                 </a>
@@ -2435,8 +3660,8 @@
                     <div class="connect-icon"><i class="fab fa-github"></i></div>
                     <span class="connect-name">GitHub</span>
                 </div>
-                <h3 class="connect-title">Code & Projects</h3>
-                <p class="connect-desc">Where my projects, experiments and learning repositories live.</p>
+                <h3 class="connect-title">Code Repositories</h3>
+                <p class="connect-desc">Open-source automation templates, frontend code, and web projects.</p>
                 <a href="https://github.com/Tanyamahrauliya" target="_blank" class="connect-link">
                     Tanyamahrauliya <i class="fas fa-arrow-right"></i>
                 </a>
@@ -2447,9 +3672,9 @@
                     <div class="connect-icon"><i class="fab fa-youtube"></i></div>
                     <span class="connect-name">YouTube</span>
                 </div>
-                <h3 class="connect-title">Learning & Sharing</h3>
-                <p class="connect-desc">Videos about tech, AI, development and the things I'm discovering along the way.
-                </p>
+                <h3 class="connect-title">Video Walkthroughs</h3>
+                <p class="connect-desc">Practical guides and tutorials on n8n automation, AI agents, and web
+                    development.</p>
                 <a href="https://www.youtube.com/@TanyaVerse1" target="_blank" class="connect-link">
                     @TanyaVerse1 <i class="fas fa-arrow-right"></i>
                 </a>
@@ -2469,13 +3694,13 @@
                 <div class="contact-info-block">
                     <h4>Email</h4>
                     <p>tanyamahrauliya79@gmail.com</p>
-                    <p class="contact-sub">Have an interesting idea, project or collaboration in mind? Feel free to
-                        reach out.</p>
+                    <p class="contact-sub">Have a workflow to automate, an AI assistant to build, or a website project?
+                        Feel free to reach out.</p>
                 </div>
                 <div class="contact-info-block">
                     <h4>Response Time</h4>
-                    <p style="font-size: 1rem; color: var(--muted); line-height: 1.6; margin-top: 5px;">I try to reply
-                        within 24–48 hours. Looking forward to hearing from you.</p>
+                    <p style="font-size: 0.95rem; color: var(--muted); line-height: 1.6; margin-top: 5px;">I typically
+                        reply within 24 hours. Looking forward to hearing from you.</p>
                 </div>
             </div>
 
@@ -2508,7 +3733,7 @@
         <div class="footer-top">
             <div class="footer-brand">
                 <h3>Tanya<span style="color: var(--gold)">.</span></h3>
-                <p>Building, learning and experimenting with technology.</p>
+                <p>Building AI automations and modern websites that help businesses grow.</p>
             </div>
             <div class="footer-links-wrap">
                 <div class="footer-col">
@@ -2525,10 +3750,10 @@
                 <div class="footer-col">
                     <h5>Areas</h5>
                     <ul>
-                        <li><a href="#exploring">Web Development</a></li>
-                        <li><a href="#exploring">AI Automation</a></li>
-                        <li><a href="#exploring">n8n Workflows</a></li>
-                        <li><a href="#exploring">SaaS Products</a></li>
+                        <li><a href="#skills">AI Automation</a></li>
+                        <li><a href="#skills">n8n Workflows</a></li>
+                        <li><a href="#skills">AI Agents</a></li>
+                        <li><a href="#skills">Web Development</a></li>
                     </ul>
                 </div>
             </div>
@@ -2556,10 +3781,866 @@
         </div>
     </div>
 
+
+    <!-- Demo Link Toast Notification (Safe handling for missing video links) -->
+    <div id="demo-toast" class="demo-toast" role="alert" aria-live="polite">
+        <i class="fas fa-info-circle"></i>
+        <span id="demo-toast-msg">Demo video link will open shortly.</span>
+    </div>
+
+    <!-- ─── AI CHATBOT WIDGETS (TEXT & VOICE CALLING) ─── -->
+
+    <!-- Proactive Greeting Bubble -->
+    <div class="chat-greeting-bubble" id="chat-greeting-bubble">
+        <span>👋 Hi! Have questions or want to try a live voice call? Tap below!</span>
+        <button class="chat-greeting-close" onclick="dismissGreeting()" aria-label="Dismiss">&times;</button>
+    </div>
+
+    <!-- Floating Chatbot Launcher (Split Pill: Chat & Call) -->
+    <div class="chatbot-launcher" id="chatbot-launcher">
+        <button class="chat-trigger-pill voice-call-pill" id="voice-call-trigger" onclick="startVoiceCall()"
+            aria-label="Start Voice Call">
+            <i class="fas fa-phone-alt"></i>
+            <span>Voice Call</span>
+        </button>
+        <button class="chat-trigger-pill" id="text-chat-trigger" onclick="toggleTextChatbot()"
+            aria-label="Open Text Chat">
+            <span class="chat-pulse-dot"></span>
+            <i class="fas fa-comment-dots"></i>
+            <span>Chat</span>
+        </button>
+    </div>
+
+    <!-- 1. ChatGPT-Style Text Chat Interface -->
+    <div class="chatgpt-window" id="chatgpt-window" role="dialog" aria-label="ChatGPT Portfolio Assistant">
+        <div class="chatgpt-header">
+            <div class="chatgpt-model-info">
+                <div class="chatgpt-avatar-icon">
+                    <i class="fas fa-sparkles"></i>
+                </div>
+                <div>
+                    <div class="chatgpt-model-name">
+                        Tanya AI <span class="chatgpt-model-tag">Portfolio 2.0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="chatgpt-header-actions">
+                <button class="chatgpt-call-toggle-btn" onclick="startVoiceCall()"
+                    title="Switch to live phone voice call">
+                    <i class="fas fa-phone-alt"></i> Call
+                </button>
+                <button class="chatgpt-tool-btn" onclick="clearTextChat()" title="Clear conversation">
+                    <i class="fas fa-redo-alt"></i>
+                </button>
+                <button class="chatgpt-tool-btn" onclick="toggleTextChatbot()" title="Close chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="chatgpt-messages" id="chatgpt-messages-stream">
+            <div class="chatgpt-row bot">
+                <div class="chatgpt-bubble bot">
+                    Hello! I'm Tanya's AI assistant. Ask me anything about Tanya's web development, n8n automations, AI
+                    agents, WhatsApp workflows, or collaboration.
+                    <div class="chatgpt-quick-chips">
+                        <button class="chatgpt-chip-btn"
+                            onclick="askChatGPTQuick('What automation services does Tanya offer?')">
+                            <i class="fas fa-bolt" style="color: #818cf8;"></i> What automation services does Tanya
+                            offer?
+                        </button>
+                        <button class="chatgpt-chip-btn"
+                            onclick="askChatGPTQuick('Explain how the WhatsApp automation workflow works')">
+                            <i class="fab fa-whatsapp" style="color: #10b981;"></i> Explain how the WhatsApp automation
+                            works
+                        </button>
+                        <button class="chatgpt-chip-btn"
+                            onclick="askChatGPTQuick('Tell me about the AI Voice Agent project')">
+                            <i class="fas fa-microphone-alt" style="color: #00f2fe;"></i> Tell me about the AI Voice
+                            Agent project
+                        </button>
+                        <button class="chatgpt-chip-btn" onclick="askChatGPTQuick('What tech stack does Tanya use?')">
+                            <i class="fas fa-laptop-code" style="color: #f59e0b;"></i> What tech stack does Tanya use?
+                        </button>
+                        <button class="chatgpt-chip-btn" onclick="askChatGPTQuick('How can I contact or hire Tanya?')">
+                            <i class="fas fa-envelope" style="color: #ec4899;"></i> How can I contact or hire Tanya?
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Typing indicator -->
+            <div class="chatgpt-typing-row" id="chatgpt-typing-dots">
+                <span class="chatgpt-dot"></span>
+                <span class="chatgpt-dot"></span>
+                <span class="chatgpt-dot"></span>
+            </div>
+        </div>
+
+        <div class="chatgpt-input-container">
+            <form class="chatgpt-input-capsule" id="chatgpt-form" onsubmit="handleChatGPTSubmit(event)">
+                <button type="button" class="chatgpt-icon-btn chatgpt-mic-action" id="chatgpt-mic-btn"
+                    onclick="toggleChatVoiceTyping()" title="Dictate message">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <input type="text" class="chatgpt-text-input" id="chatgpt-input-field" placeholder="Message Tanya AI..."
+                    autocomplete="off" oninput="updateSendButtonState()" />
+                <button type="submit" class="chatgpt-icon-btn chatgpt-send-action" id="chatgpt-send-btn"
+                    title="Send message">
+                    <i class="fas fa-arrow-up"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 2. Voice Chatbot — Calling Interface (matching voiceagent.png) -->
+    <div class="voice-call-overlay" id="voice-call-overlay" onclick="handleVoiceOverlayClick(event)">
+        <div class="phone-call-modal" role="dialog" aria-modal="true" aria-label="AI Voice Call">
+            <!-- Simulated Phone Status Bar -->
+            <div class="phone-status-bar">
+                <span id="phone-clock">14:38</span>
+                <div class="phone-notch"></div>
+                <div>
+                    <i class="fas fa-signal"></i>
+                    <i class="fas fa-wifi" style="margin: 0 4px;"></i>
+                    <i class="fas fa-battery-three-quarters"></i>
+                </div>
+            </div>
+
+            <!-- Caller Info Header -->
+            <div class="phone-caller-info">
+                <div class="caller-avatar-circle">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <div class="caller-name">Tanya AI Assistant</div>
+                <div class="call-duration-timer" id="call-timer-display">
+                    <span>●</span> <span id="call-duration-clock">00:00</span>
+                </div>
+                <div class="call-status-badge listening" id="call-status-badge">
+                    ● Active · Listening...
+                </div>
+            </div>
+
+            <!-- Glowing Soundwave Visualizer -->
+            <div class="call-wave-visualizer" id="call-wave-bars">
+                <!-- 28 Bars generated by JS -->
+            </div>
+
+            <!-- Live Spoken Transcription Display Card -->
+            <div class="live-transcript-card" id="call-transcript-card">
+                <div class="transcript-line user-transcript" id="live-user-speech">
+                    <span class="transcript-label">You:</span>
+                    <span id="live-user-text">Listening for your speech... Speak naturally.</span>
+                </div>
+                <div class="transcript-line ai-transcript" id="live-ai-speech">
+                    <span class="transcript-label">AI:</span>
+                    <span id="live-ai-text">"Hi, I'm on the call! Ask me about Tanya's web development, n8n automations,
+                        or projects."</span>
+                </div>
+            </div>
+
+            <!-- Bottom Phone Controls (matching voiceagent.png) -->
+            <div class="phone-call-controls">
+                <div class="phone-actions-row">
+                    <div class="phone-action-btn-item">
+                        <button class="phone-action-circle" id="call-mute-toggle" onclick="toggleCallMute()"
+                            title="Mute/Unmute Mic">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <span class="phone-action-label" id="call-mute-label">Mute</span>
+                    </div>
+
+                    <div class="phone-action-btn-item">
+                        <button class="phone-action-circle" onclick="switchCallToTextChat()" title="Open text chat">
+                            <i class="fas fa-comment-dots"></i>
+                        </button>
+                        <span class="phone-action-label">Keypad</span>
+                    </div>
+
+                    <div class="phone-action-btn-item">
+                        <button class="phone-action-circle" id="call-speaker-toggle" onclick="toggleCallSpeaker()"
+                            title="Speaker audio on/off">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                        <span class="phone-action-label" id="call-speaker-label">Speaker</span>
+                    </div>
+                </div>
+
+                <button class="end-call-pill-btn" onclick="endVoiceCall()">
+                    <i class="fas fa-phone-slash"></i> End Call
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
     <script>
+        /* ─── SMOOTH SCROLLING WITH OFFSET ─── */
+        function initSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#' || targetId === '') return;
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        e.preventDefault();
+                        const headerOffset = 80;
+                        const elementPosition = targetEl.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        /* ─── DYNAMIC CARD SPOTLIGHT MOUSE-FOLLOW ─── */
+        function initCardSpotlights() {
+            const cards = document.querySelectorAll('.glass-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', x + 'px');
+                    card.style.setProperty('--mouse-y', y + 'px');
+                });
+            });
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           PROJECT DEMO VIDEO CONFIGURATION
+           Paste your Google Drive or live demo video URLs below.
+           Visitors clicking "Watch Demo" will open this link in a new tab.
+           ═══════════════════════════════════════════════════════════════════ */
+        const PROJECT_DEMO_CONFIG = {
+            whatsapp: {
+                title: "WhatsApp Automation Workflow",
+                demoVideoUrl: "" // ← Paste your Google Drive video link here (e.g. "https://drive.google.com/file/d/...")
+            },
+            voiceagent: {
+                title: "AI Voice Agent",
+                demoVideoUrl: "" // ← Paste your Google Drive video link here (e.g. "https://drive.google.com/file/d/...")
+            }
+        };
+
+        function showDemoNotification(message) {
+            const toast = document.getElementById('demo-toast');
+            const msgEl = document.getElementById('demo-toast-msg');
+            if (toast && msgEl) {
+                msgEl.textContent = message;
+                toast.classList.add('active');
+                setTimeout(() => {
+                    toast.classList.remove('active');
+                }, 3800);
+            } else {
+                alert(message);
+            }
+        }
+
+        function openDemoVideo(projectId, event) {
+            if (event && event.preventDefault) event.preventDefault();
+            const project = PROJECT_DEMO_CONFIG[projectId];
+            if (!project) return;
+
+            const url = (project.demoVideoUrl || '').trim();
+            if (url && url !== '#' && (url.startsWith('http://') || url.startsWith('https://'))) {
+                window.open(url, '_blank', 'noopener,noreferrer');
+            } else {
+                showDemoNotification(`Demo video for "${project.title}" will be available soon!`);
+            }
+        }
+
+        function openVideoDemo(projectId, event) {
+            openDemoVideo(projectId, event);
+        }
+
+        function initVideoDemoEngine() {
+            // Prepared for project demo video handling
+        }
+
+        /* ─── CHATBOT ENGINE: CHATGPT TEXT & VOICE CALL INTERFACES ─── */
+        let textChatOpen = false;
+        let voiceCallActive = false;
+        let callMuted = false;
+        let callSpeakerOn = true;
+        let callDurationSeconds = 0;
+        let callTimerInterval = null;
+        let waveAnimationInterval = null;
+        let callSpeechRecognition = null;
+        let textVoiceTypingRecognition = null;
+        let isTTSPlaying = false;
+        let conversationHistory = [];
+
+        // Grounded knowledge base & smart response matcher
+        const tanyaKnowledge = {
+            intro: "Tanya is an AI Automation Specialist and Web Developer who builds modern websites and practical AI automations that help businesses save time and grow.",
+            services: "Tanya offers practical AI automations and web development services:\n• **n8n Automation**: Custom workflows connecting apps, Google Sheets, Airtable, and CRMs.\n• **AI Agents & Chatbots**: Smart assistants for lead qualification and customer support.\n• **WhatsApp Automation**: Automated messaging, customer intake, and booking confirmations.\n• **Web Development**: Fast, mobile-friendly business websites and web applications.",
+            whatsapp: "Tanya's **WhatsApp Automation** connects WhatsApp with n8n to receive customer messages, draft instant replies, log leads in your CRM or Sheets, and confirm appointments directly in chat.",
+            voiceAgent: "Tanya's **AI Voice Agent** handles phone conversations automatically: it listens to callers using fast speech-to-text, checks appointment availability, speaks natural confirmations, and sends follow-up texts.",
+            skills: "Tanya's core technical skills include Web Development (HTML, CSS, JavaScript, responsive UI/UX), n8n workflow automation, LLMs & AI agents, API integrations, webhooks, and AI-powered web applications.",
+            growthos: "**GrowthOS** is a personal growth web application built by Tanya featuring daily habit tracking, a deep work focus timer, and an embedded AI growth coach.",
+            dental: "The **Dental Clinic Website** is a modern, responsive web application Tanya built featuring appointment booking workflows, service catalogs, and mobile optimization.",
+            stack: "Tanya builds with practical tools: n8n, Webhooks, REST APIs, OpenAI & Claude models, Supabase, Airtable, Google Sheets, HTML5, CSS3, and JavaScript.",
+            contact: "You can collaborate with Tanya by emailing **tanyamahrauliya79@gmail.com**. She typically responds within 24 hours.",
+            unrelated: "Sorry, I'm here to help you with Tanya's portfolio, projects, skills, and services."
+        };
+
+        // Query classifier with context awareness
+        function getBotAnswer(query) {
+            const q = query.trim().toLowerCase();
+            conversationHistory.push({ role: 'user', content: query });
+
+            // Greetings & Courtesies
+            if (/^(hi|hello|hey|good\s(morning|afternoon|evening)|howdy)/i.test(q)) {
+                return "Hello! I'm Tanya's AI assistant. Ask me anything about Tanya's web development, n8n automations, or projects.";
+            }
+            if (/^(who are you|what is your name|who made you|what can you do)/i.test(q)) {
+                return "I'm Tanya AI — a portfolio assistant built to answer your questions about Tanya's web development and AI automation work.";
+            }
+            if (/^(how are you|how's it going)/i.test(q)) {
+                return "I'm doing great, thank you! How can I help you learn about Tanya's work today?";
+            }
+            if (/^(thank you|thanks|great|awesome|perfect|ok|okay)/i.test(q)) {
+                return "You're very welcome! Let me know if you have any other questions about Tanya's services or projects.";
+            }
+
+            // Portfolio Specific Topics
+            if (q.includes('service') || q.includes('offer') || q.includes('what do you build') || q.includes('what can tanya do')) {
+                return tanyaKnowledge.services;
+            }
+            if (q.includes('whatsapp')) {
+                return tanyaKnowledge.whatsapp;
+            }
+            if (q.includes('voice') || q.includes('agent') || q.includes('calling') || q.includes('phone')) {
+                return tanyaKnowledge.voiceAgent;
+            }
+            if (q.includes('growthos') || q.includes('saas') || q.includes('habit')) {
+                return tanyaKnowledge.growthos;
+            }
+            if (q.includes('dental') || q.includes('clinic')) {
+                return tanyaKnowledge.dental;
+            }
+            if (q.includes('skill') || q.includes('specialist') || q.includes('background') || q.includes('about')) {
+                return tanyaKnowledge.skills;
+            }
+            if (q.includes('stack') || q.includes('technology') || q.includes('tools') || q.includes('language')) {
+                return tanyaKnowledge.stack;
+            }
+            if (q.includes('contact') || q.includes('email') || q.includes('hire') || q.includes('collaborate') || q.includes('pricing') || q.includes('work together')) {
+                return tanyaKnowledge.contact;
+            }
+            if (q.includes('project') || q.includes('work') || q.includes('portfolio')) {
+                return "Tanya has built featured projects including the **Dental Clinic Website**, **Website + AI Chatbot**, **WhatsApp Automation Workflow**, **AI Voice Agent**, and **GrowthOS SaaS**. Which one would you like to know more about?";
+            }
+            if (q.includes('n8n') || q.includes('automation') || q.includes('workflow')) {
+                return "Tanya specializes in building custom n8n workflows that connect applications, databases, and APIs so business tasks run on autopilot without manual entry.";
+            }
+            if (q.includes('web') || q.includes('website') || q.includes('frontend')) {
+                return "Tanya develops fast, responsive, and modern business websites with clean code, intuitive UI/UX, and integrated AI features.";
+            }
+
+            // If question is completely unrelated to Tanya's work/skills/portfolio:
+            return tanyaKnowledge.unrelated;
+        }
+
+        // Initialize Chatbot Systems
+        function initAIChatbotEngine() {
+            // Show proactive greeting after 3.5s
+            setTimeout(() => {
+                const bubble = document.getElementById('chat-greeting-bubble');
+                if (bubble && !sessionStorage.getItem('chatGreetingDismissed')) {
+                    bubble.classList.add('show');
+                }
+            }, 3500);
+
+            // Generate initial waveform bars for call interface
+            const waveContainer = document.getElementById('call-wave-bars');
+            if (waveContainer && waveContainer.children.length === 0) {
+                for (let i = 0; i < 28; i++) {
+                    const bar = document.createElement('div');
+                    bar.className = 'call-wave-bar';
+                    waveContainer.appendChild(bar);
+                }
+            }
+
+            // Update simulated phone clock
+            updatePhoneClock();
+            setInterval(updatePhoneClock, 30000);
+        }
+
+        function updatePhoneClock() {
+            const clock = document.getElementById('phone-clock');
+            if (!clock) return;
+            const now = new Date();
+            const hrs = String(now.getHours()).padStart(2, '0');
+            const mins = String(now.getMinutes()).padStart(2, '0');
+            clock.textContent = hrs + ':' + mins;
+        }
+
+        function dismissGreeting() {
+            const bubble = document.getElementById('chat-greeting-bubble');
+            if (bubble) bubble.classList.remove('show');
+            sessionStorage.setItem('chatGreetingDismissed', 'true');
+        }
+
+        /* ─── 1. TEXT CHATBOT LOGIC (CHATGPT STYLE) ─── */
+        function toggleTextChatbot() {
+            const win = document.getElementById('chatgpt-window');
+            textChatOpen = !textChatOpen;
+            win.classList.toggle('open', textChatOpen);
+            dismissGreeting();
+            if (textChatOpen) {
+                document.getElementById('chatgpt-input-field').focus();
+            }
+        }
+
+        function updateSendButtonState() {
+            const input = document.getElementById('chatgpt-input-field');
+            const btn = document.getElementById('chatgpt-send-btn');
+            if (input && btn) {
+                btn.classList.toggle('active', input.value.trim().length > 0);
+            }
+        }
+
+        function handleChatGPTSubmit(e) {
+            if (e && e.preventDefault) e.preventDefault();
+            const input = document.getElementById('chatgpt-input-field');
+            const message = input.value.trim();
+            if (!message) return;
+
+            addChatGPTMessage(message, 'user');
+            input.value = '';
+            updateSendButtonState();
+
+            // Show typing indicator
+            const typingDots = document.getElementById('chatgpt-typing-dots');
+            typingDots.classList.add('active');
+            scrollChatGPTToBottom();
+
+            setTimeout(() => {
+                typingDots.classList.remove('active');
+                const botReply = getBotAnswer(message);
+                addChatGPTMessage(botReply, 'bot');
+            }, 600);
+        }
+
+        function askChatGPTQuick(text) {
+            document.getElementById('chatgpt-input-field').value = text;
+            updateSendButtonState();
+            handleChatGPTSubmit();
+        }
+
+        function addChatGPTMessage(text, sender) {
+            const container = document.getElementById('chatgpt-messages-stream');
+            const typingDots = document.getElementById('chatgpt-typing-dots');
+
+            const row = document.createElement('div');
+            row.className = 'chatgpt-row ' + sender;
+
+            const bubble = document.createElement('div');
+            bubble.className = 'chatgpt-bubble ' + sender;
+
+            let formatted = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            bubble.innerHTML = formatted;
+
+            if (sender === 'bot') {
+                const actions = document.createElement('div');
+                actions.className = 'chatgpt-bot-actions';
+
+                const listenBtn = document.createElement('button');
+                listenBtn.className = 'chatgpt-action-pill';
+                listenBtn.innerHTML = '<i class="fas fa-volume-up"></i> Listen';
+                listenBtn.onclick = () => speakBotVoice(text);
+                actions.appendChild(listenBtn);
+
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'chatgpt-action-pill';
+                copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                copyBtn.onclick = () => {
+                    navigator.clipboard.writeText(text);
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied';
+                    setTimeout(() => { copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy'; }, 1500);
+                };
+                actions.appendChild(copyBtn);
+
+                bubble.appendChild(actions);
+            }
+
+            row.appendChild(bubble);
+            container.insertBefore(row, typingDots);
+            scrollChatGPTToBottom();
+        }
+
+        function scrollChatGPTToBottom() {
+            const container = document.getElementById('chatgpt-messages-stream');
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function clearTextChat() {
+            const container = document.getElementById('chatgpt-messages-stream');
+            const typingDots = document.getElementById('chatgpt-typing-dots');
+            container.innerHTML = '';
+            container.appendChild(typingDots);
+            addChatGPTMessage("Conversation cleared. How can I assist you with Tanya's work today?", 'bot');
+        }
+
+        function toggleChatVoiceTyping() {
+            const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRec) {
+                addChatGPTMessage("Voice speech-to-text is not supported in this browser. Please type your message.", 'bot');
+                return;
+            }
+
+            const micBtn = document.getElementById('chatgpt-mic-btn');
+            const inputField = document.getElementById('chatgpt-input-field');
+
+            if (textVoiceTypingRecognition) {
+                try { textVoiceTypingRecognition.stop(); } catch (e) { }
+                textVoiceTypingRecognition = null;
+                micBtn.style.color = '';
+                return;
+            }
+
+            try {
+                textVoiceTypingRecognition = new SpeechRec();
+                textVoiceTypingRecognition.lang = 'en-US';
+                textVoiceTypingRecognition.interimResults = true;
+
+                micBtn.style.color = '#ef4444';
+
+                textVoiceTypingRecognition.onresult = (e) => {
+                    const transcript = e.results[0][0].transcript;
+                    inputField.value = transcript;
+                    updateSendButtonState();
+                };
+
+                textVoiceTypingRecognition.onerror = (e) => {
+                    micBtn.style.color = '';
+                    textVoiceTypingRecognition = null;
+                };
+
+                textVoiceTypingRecognition.onend = () => {
+                    micBtn.style.color = '';
+                    textVoiceTypingRecognition = null;
+                    if (inputField.value.trim().length > 0) {
+                        handleChatGPTSubmit();
+                    }
+                };
+
+                textVoiceTypingRecognition.start();
+            } catch (e) {
+                micBtn.style.color = '';
+                textVoiceTypingRecognition = null;
+            }
+        }
+
+        /* ─── 2. VOICE CHATBOT LOGIC (PHONE CALL INTERFACE) ─── */
+        function startVoiceCall() {
+            dismissGreeting();
+            // Close text window if open
+            if (textChatOpen) toggleTextChatbot();
+
+            const overlay = document.getElementById('voice-call-overlay');
+            overlay.classList.add('active');
+            voiceCallActive = true;
+            callMuted = false;
+            callDurationSeconds = 0;
+
+            updateCallStatusBadge('listening');
+            updateCallMuteUI();
+
+            // Start call duration counter
+            clearInterval(callTimerInterval);
+            callTimerInterval = setInterval(() => {
+                callDurationSeconds++;
+                const mins = String(Math.floor(callDurationSeconds / 60)).padStart(2, '0');
+                const secs = String(callDurationSeconds % 60).padStart(2, '0');
+                document.getElementById('call-duration-clock').textContent = mins + ':' + secs;
+            }, 1000);
+
+            // Start wave visualizer animation
+            startWaveformAnimation('listening');
+
+            // Set greeting transcript and speak welcome
+            document.getElementById('live-user-text').textContent = "Listening for your speech... Speak naturally.";
+            const welcomeSpeech = "Hello! You're connected with Tanya's AI voice assistant. Ask me anything about Tanya's web development, n8n automations, or projects.";
+            document.getElementById('live-ai-text').textContent = welcomeSpeech;
+            speakBotVoice(welcomeSpeech, () => {
+                // When welcome finished, begin listening
+                if (voiceCallActive && !callMuted) {
+                    beginCallVoiceRecognition();
+                }
+            });
+        }
+
+        function endVoiceCall() {
+            const overlay = document.getElementById('voice-call-overlay');
+            overlay.classList.remove('active');
+            voiceCallActive = false;
+
+            clearInterval(callTimerInterval);
+            clearInterval(waveAnimationInterval);
+
+            if (callSpeechRecognition) {
+                try { callSpeechRecognition.stop(); } catch (e) { }
+                callSpeechRecognition = null;
+            }
+
+            if (window.speechSynthesis) {
+                window.speechSynthesis.cancel();
+            }
+        }
+
+        function handleVoiceOverlayClick(e) {
+            if (e.target === document.getElementById('voice-call-overlay')) {
+                endVoiceCall();
+            }
+        }
+
+        function switchCallToTextChat() {
+            endVoiceCall();
+            toggleTextChatbot();
+        }
+
+        function toggleCallMute() {
+            callMuted = !callMuted;
+            updateCallMuteUI();
+
+            if (callMuted) {
+                updateCallStatusBadge('muted');
+                if (callSpeechRecognition) {
+                    try { callSpeechRecognition.stop(); } catch (e) { }
+                }
+                stopWaveformAnimation();
+            } else {
+                updateCallStatusBadge('listening');
+                beginCallVoiceRecognition();
+                startWaveformAnimation('listening');
+            }
+        }
+
+        function updateCallMuteUI() {
+            const muteBtn = document.getElementById('call-mute-toggle');
+            const muteLabel = document.getElementById('call-mute-label');
+            if (muteBtn && muteLabel) {
+                muteBtn.classList.toggle('active', callMuted);
+                muteLabel.textContent = callMuted ? 'Unmute' : 'Mute';
+            }
+        }
+
+        function toggleCallSpeaker() {
+            callSpeakerOn = !callSpeakerOn;
+            const spkBtn = document.getElementById('call-speaker-toggle');
+            const spkLabel = document.getElementById('call-speaker-label');
+            if (spkBtn && spkLabel) {
+                spkBtn.classList.toggle('active', !callSpeakerOn);
+                spkLabel.textContent = callSpeakerOn ? 'Speaker' : 'Muted';
+            }
+            if (!callSpeakerOn && window.speechSynthesis) {
+                window.speechSynthesis.cancel();
+            }
+        }
+
+        function updateCallStatusBadge(state) {
+            const badge = document.getElementById('call-status-badge');
+            if (!badge) return;
+            badge.className = 'call-status-badge ' + state;
+
+            if (state === 'listening') {
+                badge.innerHTML = '● Active · Listening...';
+            } else if (state === 'processing') {
+                badge.innerHTML = '● Processing speech...';
+            } else if (state === 'speaking') {
+                badge.innerHTML = '● Tanya AI Speaking...';
+            } else if (state === 'muted') {
+                badge.innerHTML = '● Microphone Muted';
+            }
+        }
+
+        function startWaveformAnimation(state) {
+            clearInterval(waveAnimationInterval);
+            const bars = document.querySelectorAll('.call-wave-bar');
+            waveAnimationInterval = setInterval(() => {
+                bars.forEach((bar, idx) => {
+                    let maxH = 20;
+                    if (state === 'listening') {
+                        maxH = Math.floor(Math.sin(Date.now() / 200 + idx) * 22) + 26;
+                    } else if (state === 'speaking') {
+                        maxH = Math.floor(Math.random() * 58) + 16;
+                    }
+                    bar.style.height = maxH + 'px';
+                });
+            }, 100);
+        }
+
+        function stopWaveformAnimation() {
+            clearInterval(waveAnimationInterval);
+            const bars = document.querySelectorAll('.call-wave-bar');
+            bars.forEach(bar => { bar.style.height = '14px'; });
+        }
+
+        function beginCallVoiceRecognition() {
+            if (!voiceCallActive || callMuted) return;
+
+            const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRec) {
+                document.getElementById('live-user-text').textContent = "Speech recognition is not supported in this browser. Please use Text Chat.";
+                return;
+            }
+
+            if (callSpeechRecognition) {
+                try { callSpeechRecognition.stop(); } catch (e) { }
+            }
+
+            try {
+                callSpeechRecognition = new SpeechRec();
+                callSpeechRecognition.continuous = false;
+                callSpeechRecognition.interimResults = true;
+                callSpeechRecognition.lang = 'en-US';
+
+                callSpeechRecognition.onstart = () => {
+                    updateCallStatusBadge('listening');
+                    startWaveformAnimation('listening');
+                };
+
+                // Most importantly: display spoken words as live interim and final text!
+                callSpeechRecognition.onresult = (event) => {
+                    let interimText = '';
+                    let finalText = '';
+
+                    for (let i = event.resultIndex; i < event.results.length; ++i) {
+                        if (event.results[i].isFinal) {
+                            finalText += event.results[i][0].transcript;
+                        } else {
+                            interimText += event.results[i][0].transcript;
+                        }
+                    }
+
+                    const displayText = finalText || interimText;
+                    if (displayText) {
+                        document.getElementById('live-user-text').textContent = displayText;
+                    }
+
+                    if (finalText.trim().length > 0) {
+                        handleSpokenQuery(finalText.trim());
+                    }
+                };
+
+                callSpeechRecognition.onerror = (event) => {
+                    if (event.error === 'not-allowed') {
+                        document.getElementById('live-user-text').textContent = "Microphone access was denied. Please allow microphone permissions.";
+                        updateCallStatusBadge('muted');
+                    } else if (event.error === 'no-speech') {
+                        // Restart listening if call is still active
+                        if (voiceCallActive && !callMuted && !isTTSPlaying) {
+                            setTimeout(beginCallVoiceRecognition, 600);
+                        }
+                    }
+                };
+
+                callSpeechRecognition.onend = () => {
+                    // If call is still active and AI is not speaking, resume listening
+                    if (voiceCallActive && !callMuted && !isTTSPlaying) {
+                        setTimeout(beginCallVoiceRecognition, 400);
+                    }
+                };
+
+                callSpeechRecognition.start();
+            } catch (e) {
+                console.warn("Call voice rec start error:", e);
+            }
+        }
+
+        function handleSpokenQuery(userSpeech) {
+            updateCallStatusBadge('processing');
+            stopWaveformAnimation();
+
+            // Match answer
+            const aiAnswer = getBotAnswer(userSpeech);
+
+            // Display on screen
+            document.getElementById('live-ai-text').textContent = aiAnswer;
+
+            // Speak answer
+            updateCallStatusBadge('speaking');
+            startWaveformAnimation('speaking');
+
+            speakBotVoice(aiAnswer, () => {
+                // When speech finishes, resume listening
+                if (voiceCallActive && !callMuted) {
+                    updateCallStatusBadge('listening');
+                    startWaveformAnimation('listening');
+                    document.getElementById('live-user-text').textContent = "Listening... Speak now.";
+                    beginCallVoiceRecognition();
+                }
+            });
+        }
+
+        /* ─── SHARED TEXT-TO-SPEECH (TTS) ─── */
+        function speakBotVoice(text, onCompleteCallback) {
+            if (!window.speechSynthesis || !callSpeakerOn) {
+                if (onCompleteCallback) onCompleteCallback();
+                return;
+            }
+
+            try {
+                window.speechSynthesis.cancel();
+                isTTSPlaying = true;
+
+                const cleanText = text.replace(/[*_#•\[\]]/g, '').replace(/<[^>]*>/g, '');
+                const utterance = new SpeechSynthesisUtterance(cleanText);
+                utterance.rate = 1.05;
+                utterance.pitch = 1.0;
+
+                const voices = window.speechSynthesis.getVoices();
+                if (voices && voices.length > 0) {
+                    const naturalVoice = voices.find(v => (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Zira') || v.name.includes('Jenny')) && v.lang.startsWith('en')) || voices.find(v => v.lang.startsWith('en'));
+                    if (naturalVoice) utterance.voice = naturalVoice;
+                }
+
+                utterance.onend = () => {
+                    isTTSPlaying = false;
+                    if (onCompleteCallback) onCompleteCallback();
+                };
+
+                utterance.onerror = () => {
+                    isTTSPlaying = false;
+                    if (onCompleteCallback) onCompleteCallback();
+                };
+
+                window.speechSynthesis.speak(utterance);
+            } catch (e) {
+                isTTSPlaying = false;
+                if (onCompleteCallback) onCompleteCallback();
+            }
+        }
+
+        // Global exports for inline HTML handlers
+        window.openDemoVideo = openDemoVideo;
+        window.openVideoDemo = openVideoDemo;
+        window.toggleTextChatbot = toggleTextChatbot;
+        window.startVoiceCall = startVoiceCall;
+        window.endVoiceCall = endVoiceCall;
+        window.switchCallToTextChat = switchCallToTextChat;
+        window.toggleCallMute = toggleCallMute;
+        window.toggleCallSpeaker = toggleCallSpeaker;
+        window.handleVoiceOverlayClick = handleVoiceOverlayClick;
+        window.handleChatGPTSubmit = handleChatGPTSubmit;
+        window.askChatGPTQuick = askChatGPTQuick;
+        window.clearTextChat = clearTextChat;
+        window.toggleChatVoiceTyping = toggleChatVoiceTyping;
+        window.updateSendButtonState = updateSendButtonState;
+        window.dismissGreeting = dismissGreeting;
+        window.speakBotVoice = speakBotVoice;
+
+
+
+
+
         document.addEventListener("DOMContentLoaded", () => {
             initLoader();
             initCustomCursor();
@@ -2567,21 +4648,35 @@
             initThreeEngine();
             initScrollAnimations();
             initActiveNavigationStates();
+            initSmoothScrolling();
+            initCardSpotlights();
+            initVideoDemoEngine();
+            initAIChatbotEngine();
         });
 
         /* Loader */
         function initLoader() {
             const loader = document.getElementById('loader');
-            window.addEventListener('load', () => {
+            if (!loader) return;
+
+            const hideLoader = () => {
+                loader.classList.add('loader-hidden');
                 setTimeout(() => {
-                    loader.style.opacity = '0';
-                    setTimeout(() => loader.style.display = 'none', 800);
-                }, 600);
-            });
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                setTimeout(() => loader.style.display = 'none', 800);
-            }, 2500);
+                    loader.style.display = 'none';
+                }, 750);
+            };
+
+            // Allow the staggered reveal of "TANYA" to finish smoothly
+            if (document.readyState === 'complete') {
+                setTimeout(hideLoader, 900);
+            } else {
+                window.addEventListener('load', () => {
+                    setTimeout(hideLoader, 850);
+                });
+            }
+
+            // Fallback safety timeout so loader is never stuck
+            setTimeout(hideLoader, 2500);
         }
 
         /* Custom Cursor */
@@ -2629,7 +4724,7 @@
 
         /* Typewriter */
         function initTypewriter() {
-            const words = ["Web Developer.", "AI Builder.", "SaaS Explorer.", "Automation Enthusiast."];
+            const words = ["AI Automation Specialist.", "Web Developer.", "n8n Automation Builder.", "AI Solutions Specialist."];
             let wordIdx = 0;
             let charIdx = 0;
             let isDeleting = false;
